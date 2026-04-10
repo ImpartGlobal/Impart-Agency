@@ -21,7 +21,7 @@ export function AnimatedSection({
   once = true,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-80px" });
+  const isInView = useInView(ref, { once, amount: 0.1 });
 
   const directionMap = {
     up: { y: 24, x: 0 },
@@ -61,7 +61,7 @@ export function StaggerContainer({
   staggerDelay = 0.08,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <motion.div

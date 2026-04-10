@@ -53,7 +53,7 @@ export function LogoStrip() {
                 <span
                   key={`${industry}-${i}`}
                   className="flex items-center gap-3 text-sm font-medium text-brand-subtle shrink-0"
-                  aria-hidden={i >= industries.length}
+                  aria-hidden={i >= industries.length ? "true" : undefined}
                 >
                   <span
                     className="w-1.5 h-1.5 rounded-full bg-brand-orange/50 shrink-0"

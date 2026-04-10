@@ -186,10 +186,10 @@ function FullContactForm() {
           body: JSON.stringify({ ...form, source: "contact-page" }),
         });
       } else {
-        await new Promise((r) => setTimeout(r, 900));
+        await new Promise<void>((resolve) => setTimeout(resolve, 900));
       }
       setSubmitted(true);
-    } catch {
+    } catch (_err) {
       setSubmitted(true);
     } finally {
       setLoading(false);

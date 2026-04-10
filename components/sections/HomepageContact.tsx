@@ -80,10 +80,10 @@ function QuickContactForm({ whatsappUrl }: { whatsappUrl: string }) {
         });
       } else {
         // No endpoint configured — simulate success in dev
-        await new Promise((r) => setTimeout(r, 800));
+        await new Promise<void>((resolve) => setTimeout(resolve, 800));
       }
       setSubmitted(true);
-    } catch {
+    } catch (_err) {
       // Fail gracefully — still show success to user
       setSubmitted(true);
     } finally {

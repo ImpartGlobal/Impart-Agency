@@ -1,7 +1,7 @@
 import type { ElementType } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
 import {
+  ArrowRight, CheckCircle2,
   Globe, ShoppingCart, Code2, Smartphone, Sparkles,
   TrendingUp, BarChart3, FileText, Palette,
 } from "lucide-react";

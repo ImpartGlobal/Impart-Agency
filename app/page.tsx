@@ -8,6 +8,7 @@ import { WhyImpart } from "@/components/sections/WhyImpart";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Support } from "@/components/sections/Support";
 import { HomepageContact } from "@/components/sections/HomepageContact";
+import { CaseStudies } from "@/components/sections/CaseStudies";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -22,6 +23,7 @@ export default function HomePage() {
       <ServicesGrid />
       <WhyImpart />
       <Process />
+      <CaseStudies />
       <Stats />
       <Testimonials />
       <Support />

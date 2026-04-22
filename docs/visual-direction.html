@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impart Agency — Visual Direction Board</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0A0A12;
+    color: #CBD5E1;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .shell { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+
+  /* ---------- Page header ---------- */
+  .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: #F04B00; font-weight: 600; margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 56px; font-weight: 800; color: white;
+    letter-spacing: -0.025em; line-height: 1.05;
+  }
+  h1 .accent { color: #F04B00; }
+  .lede {
+    color: #94A3B8; max-width: 640px; margin-top: 24px;
+    font-size: 19px; line-height: 1.55;
+  }
+
+  /* ---------- Direction card ---------- */
+  .direction {
+    margin-top: 64px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #111120;
+  }
+  .preview {
+    height: 420px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .preview-fake-hero {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    justify-content: center; padding: 0 64px;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  }
+  .preview-fake-hero .phe {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: #F04B00; font-weight: 600; margin-bottom: 12px;
+  }
+  .preview-fake-hero .phh {
+    font-size: 40px; font-weight: 800; color: white;
+    letter-spacing: -0.02em; line-height: 1.1; max-width: 560px;
+  }
+  .preview-fake-hero .phs {
+    font-size: 15px; color: #94A3B8; margin-top: 16px; max-width: 480px;
+  }
+  .preview-fake-hero .phcta {
+    margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
+    background: #F04B00; color: white; font-size: 14px; font-weight: 600;
+    padding: 12px 20px; border-radius: 10px; width: fit-content;
+    box-shadow: 0 10px 40px rgba(240,75,0,0.3);
+  }
+  .meta { padding: 40px 48px 48px; }
+  .tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: #F04B00; font-weight: 600;
+  }
+  .dname {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 28px; color: white; font-weight: 700;
+    margin-top: 8px; letter-spacing: -0.015em;
+  }
+  .dsub { color: #94A3B8; font-size: 15px; margin-top: 12px; max-width: 720px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; }
+  .field h4 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: #64748B; font-weight: 600; margin-bottom: 10px;
+  }
+  .field p, .field ul { color: #CBD5E1; font-size: 14px; }
+  .field ul { list-style: none; padding: 0; }
+  .field ul li { padding: 4px 0; }
+  .field ul li::before { content: '→ '; color: #F04B00; }
+  .palette { display: flex; gap: 10px; margin-top: 6px; }
+  .swatch {
+    width: 52px; height: 52px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 6px; font-size: 9px; color: rgba(255,255,255,0.6);
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .best-for {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(240,75,0,0.1); color: #F04B00;
+    border: 1px solid rgba(240,75,0,0.2);
+    margin-right: 6px; margin-top: 10px;
+  }
+
+  /* ---------- Direction 1: Generative data flow (dark + orange mesh) ---------- */
+  .d1 {
+    background:
+      radial-gradient(ellipse 800px 500px at 20% 50%, rgba(240,75,0,0.28) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 400px at 85% 30%, rgba(255,107,53,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 400px 300px at 60% 80%, rgba(255,140,90,0.1) 0%, transparent 60%),
+      linear-gradient(180deg, #0A0A12 0%, #12121F 100%);
+  }
+  .d1::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 40%, rgba(255,255,255,0.08) 1px, transparent 1.5px),
+      radial-gradient(circle at 70% 20%, rgba(255,255,255,0.06) 1px, transparent 1.5px),
+      radial-gradient(circle at 90% 70%, rgba(240,75,0,0.12) 1.5px, transparent 2px),
+      radial-gradient(circle at 40% 75%, rgba(255,255,255,0.05) 1px, transparent 1.5px);
+    background-size: 120px 120px, 180px 180px, 220px 220px, 160px 160px;
+  }
+  .d1-lines {
+    position: absolute; inset: 0; opacity: 0.3;
+  }
+
+  /* ---------- Direction 2: Editorial minimal ---------- */
+  .d2 {
+    background: #0A0A12;
+  }
+  .d2 .preview-fake-hero { padding: 0 80px; }
+  .d2 .phh { font-size: 48px; }
+
+  /* ---------- Direction 3: Cinematic 3D gradient ---------- */
+  .d3 {
+    background:
+      radial-gradient(ellipse 900px 600px at 70% 120%, rgba(240,75,0,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse 700px 500px at 20% -20%, rgba(130,60,230,0.3) 0%, transparent 55%),
+      radial-gradient(ellipse 500px 400px at 50% 50%, rgba(20,20,40,0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0A12 0%, #1A1030 50%, #0A0A12 100%);
+    position: relative;
+  }
+  .d3::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 100%;
+    opacity: 0.5;
+  }
+
+  /* ---------- Direction 4: Editorial photography (mocked as tinted stock) ---------- */
+  .d4 {
+    background:
+      linear-gradient(135deg, rgba(10,10,20,0.7) 0%, rgba(10,10,20,0.95) 100%),
+      linear-gradient(45deg, #4A3525 0%, #1A1A2E 60%, #0A0A12 100%);
+    position: relative;
+  }
+  .d4::before {
+    content: 'EDITORIAL PHOTOGRAPHY — real people, real workspaces, dark colour-graded';
+    position: absolute; bottom: 24px; right: 32px;
+    font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.3);
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .photo-tint {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 65% 40%, rgba(180,120,80,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 25% 70%, rgba(80,60,40,0.2) 0%, transparent 45%);
+    mix-blend-mode: overlay;
+  }
+
+  /* ---------- Direction 5: Techy product / dashboard ---------- */
+  .d5 {
+    background: #0A0A12;
+    overflow: hidden;
+  }
+  .d5-dashboard {
+    position: absolute; right: -40px; top: 40px; bottom: 40px;
+    width: 560px; background: #111120;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(240,75,0,0.05);
+    padding: 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .d5-bar {
+    height: 10px; background: rgba(255,255,255,0.06); border-radius: 4px;
+  }
+  .d5-bar.a { width: 45%; background: rgba(240,75,0,0.5); }
+  .d5-bar.b { width: 70%; }
+  .d5-bar.c { width: 30%; background: rgba(240,75,0,0.3); }
+  .d5-bar.d { width: 55%; }
+  .d5-bar.e { width: 40%; background: rgba(240,75,0,0.4); }
+  .d5-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px;
+  }
+  .d5-stat {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 12px; height: 70px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .d5-stat .num { font-size: 20px; font-weight: 700; color: #F04B00; }
+  .d5-stat .lbl { font-size: 9px; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; }
+  .d5-chart {
+    flex: 1; background: rgba(255,255,255,0.02); border-radius: 8px;
+    margin-top: 6px; position: relative; overflow: hidden;
+  }
+  .d5-chart::before {
+    content: ''; position: absolute; left: 10%; right: 10%; top: 30%; bottom: 10%;
+    background: linear-gradient(180deg, rgba(240,75,0,0.3) 0%, transparent 100%);
+    clip-path: polygon(0 80%, 15% 70%, 30% 75%, 45% 40%, 60% 50%, 75% 20%, 100% 10%, 100% 100%, 0 100%);
+  }
+  .d5 .preview-fake-hero { padding: 0 56px; width: 55%; }
+  .d5 .phh { font-size: 36px; }
+
+  /* ---------- Footer / how to use ---------- */
+  .howto {
+    margin-top: 96px;
+    padding: 48px;
+    border: 1px solid rgba(240,75,0,0.25);
+    border-radius: 24px;
+    background: rgba(240,75,0,0.04);
+  }
+  .howto h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px; color: white; margin-bottom: 16px;
+  }
+  .howto p { color: #CBD5E1; font-size: 15px; margin-bottom: 12px; }
+  .howto code {
+    font-family: 'SF Mono', Menlo, monospace; font-size: 13px;
+    background: rgba(255,255,255,0.06); padding: 2px 8px;
+    border-radius: 4px; color: #F04B00;
+  }
+  .divider {
+    height: 1px; background: rgba(255,255,255,0.08);
+    margin: 64px 0; max-width: 120px;
+  }
+
+  @media (max-width: 820px) {
+    h1 { font-size: 36px; }
+    .shell { padding: 40px 20px; }
+    .meta { padding: 24px; }
+    .row { grid-template-columns: 1fr; gap: 24px; }
+    .preview { height: 320px; }
+    .preview-fake-hero .phh { font-size: 26px; }
+    .preview-fake-hero { padding: 0 32px; }
+    .d5-dashboard { display: none; }
+    .d5 .preview-fake-hero { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ===== Header ===== -->
+<div class="eyebrow">Visual direction board</div>
+<h1>Impart <span class="accent">Visual</span> Directions</h1>
+<p class="lede">
+Five aesthetic routes the site could take, each mocked up as if it were the homepage
+hero. Stare at these while you're on Envato — search terms and reference sites
+for each direction are below the mockup. My recommendation is at the bottom.
+</p>
+
+<!-- ===== Direction 1 ===== -->
+<section class="direction">
+  <div class="preview d1">
+    <div class="preview-fake-hero">
+      <span class="phe">The AI Partner for South African Enterprise</span>
+      <div class="phh">We Make AI Work in Your Business.</div>
+      <div class="phs">Strategy, implementation, and operations for companies that want AI to ship — not sit in a pilot deck.</div>
+      <div class="phcta">Request a Proposal →</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="tag">Direction 01</div>
+    <div class="dname">Generative Data Flow</div>
+    <p class="dsub">
+      Dark backdrop, soft orange mesh gradients, subtle dotted particle field behind
+      the headline. Feels like AI in motion without being on-the-nose. Runway.com,
+      Gradient.ai, Human Loop all live in this territory.
+    </p>
+
+    <div class="row">
+      <div class="field">
+        <h4>Colour palette</h4>
+        <div class="palette">
+          <div class="swatch" style="background:#0A0A12;">#0A0A12</div>
+          <div class="swatch" style="background:#111120;">#111120</div>
+          <div class="swatch" style="background:#F04B00;color:white;">#F04B00</div>
+          <div class="swatch" style="background:#FF6B35;color:white;">#FF6B35</div>
+          <div class="swatch" style="background:#94A3B8;color:#0A0A12;">#94A3B8</div>
+        </div>
+      </div>
+      <div class="field">
+        <h4>Envato search terms</h4>
+        <ul>
+          <li>"dark orange gradient mesh"</li>
+          <li>"abstract particle network"</li>
+          <li>"neural flow 4K loop"</li>
+          <li>"data stream dark background"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <h4>Reference sites (live examples)</h4>
+        <ul>
+          <li><a href="https://runwayml.com" style="color:#F04B00;">runwayml.com</a></li>
+          <li><a href="https://gradient.ai" style="color:#F04B00;">gradient.ai</a></li>
+          <li><a href="https://humanloop.com" style="color:#F04B00;">humanloop.com</a></li>
+          <li><a href="https://www.together.ai" style="color:#F04B00;">together.ai</a></li>
+        </ul>
+      </div>
+      <div class="field">
+        <h4>Best for</h4>
+        <span class="best-for">Homepage hero</span>
+        <span class="best-for">Service page heroes</span>
+        <span class="best-for">CTA backgrounds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Direction 2 ===== -->
+<section class="direction">
+  <div class="preview d2">
+    <div class="preview-fake-hero" style="padding:0 80px;">
+      <span class="phe">AI that ships. Not pilots.</span>
+      <div class="phh">We Make AI Work<br>in Your Business.</div>
+      <div class="phs">Senior practitioners. Month-to-month. POPIA-compliant by default.</div>
+      <div class="phcta">Request a Proposal →</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="tag">Direction 02</div>
+    <div class="dname">Editorial Minimal</div>
+    <p class="dsub">
+      Near-black background, almost nothing else. Confident typography carries the
+      weight. The bet: taste is the differentiator, not visuals. Anthropic.com,
+      Linear.app, Vercel.com at their most restrained. Demands great typography —
+      rewards it with "serious operator" vibes.
+    </p>
+
+    <div class="row">
+      <div class="field">
+        <h4>Colour palette</h4>
+        <div class="palette">
+          <div class="swatch" style="background:#0A0A12;">#0A0A12</div>
+          <div class="swatch" style="background:white;color:#0A0A12;">#FFFFFF</div>
+          <div class="swatch" style="background:#F04B00;color:white;">#F04B00</div>
+          <div class="swatch" style="background:#64748B;">#64748B</div>
+        </div>
+      </div>
+      <div class="field">
+        <h4>Envato search terms</h4>
+        <ul>
+          <li>"minimal dark texture"</li>
+          <li>"subtle noise background"</li>
+          <li>"editorial dark photography"</li>
+          <li>Typography is the asset — no stock hero needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <h4>Reference sites (live examples)</h4>
+        <ul>
+          <li><a href="https://anthropic.com" style="color:#F04B00;">anthropic.com</a></li>
+          <li><a href="https://linear.app" style="color:#F04B00;">linear.app</a></li>
+          <li><a href="https://vercel.com" style="color:#F04B00;">vercel.com</a></li>
+        </ul>
+      </div>
+      <div class="field">
+        <h4>Best for</h4>
+        <span class="best-for">Homepage hero</span>
+        <span class="best-for">About page</span>
+        <span class="best-for">Guarantee page</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Direction 3 ===== -->
+<section class="direction">
+  <div class="preview d3">
+    <div class="preview-fake-hero">
+      <span class="phe">The AI Partner for South African Enterprise</span>
+      <div class="phh">We Make AI Work in Your Business.</div>
+      <div class="phs">Strategy, implementation, and operations for companies that want AI to ship.</div>
+      <div class="phcta">Request a Proposal →</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="tag">Direction 03</div>
+    <div class="dname">Cinematic 3D Gradient</div>
+    <p class="dsub">
+      Bold gradient meshes, cinematic lighting, subtle grid lines suggesting
+      structure. Reads as premium and confident without feeling generic-AI.
+      BCG X, Thoughtworks' recent hero work, Stripe's dark pages. The most
+      "enterprise-grade" of the five directions.
+    </p>
+
+    <div class="row">
+      <div class="field">
+        <h4>Colour palette</h4>
+        <div class="palette">
+          <div class="swatch" style="background:#0A0A12;">#0A0A12</div>
+          <div class="swatch" style="background:#1A1030;">#1A1030</div>
+          <div class="swatch" style="background:#F04B00;color:white;">#F04B00</div>
+          <div class="swatch" style="background:#823CE6;color:white;">#823CE6</div>
+          <div class="swatch" style="background:#FF6B35;color:white;">#FF6B35</div>
+        </div>
+      </div>
+      <div class="field">
+        <h4>Envato search terms</h4>
+        <ul>
+          <li>"cinematic gradient mesh 3D"</li>
+          <li>"abstract 3D render dark"</li>
+          <li>"flowing liquid gradient"</li>
+          <li>"volumetric light 3D"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <h4>Reference sites (live examples)</h4>
+        <ul>
+          <li><a href="https://bcg.com/x" style="color:#F04B00;">bcg.com/x</a></li>
+          <li><a href="https://thoughtworks.com" style="color:#F04B00;">thoughtworks.com</a></li>
+          <li><a href="https://stripe.com" style="color:#F04B00;">stripe.com</a></li>
+        </ul>
+      </div>
+      <div class="field">
+        <h4>Best for</h4>
+        <span class="best-for">Homepage hero</span>
+        <span class="best-for">Service page heroes</span>
+        <span class="best-for">Case study heroes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Direction 4 ===== -->
+<section class="direction">
+  <div class="preview d4">
+    <div class="photo-tint"></div>
+    <div class="preview-fake-hero">
+      <span class="phe">The AI Partner for South African Enterprise</span>
+      <div class="phh">We Make AI Work in Your Business.</div>
+      <div class="phs">Senior practitioners, embedded with your team, shipping weekly.</div>
+      <div class="phcta">Request a Proposal →</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="tag">Direction 04</div>
+    <div class="dname">Editorial Photography</div>
+    <p class="dsub">
+      Real people, real workspaces, colour-graded warm-dark. The hero is a
+      photograph (your team, a client workshop, engineers at a screen) with a
+      heavy dark gradient overlay so the headline reads. McKinsey Digital,
+      Slalom, BCG X's team pages. Strongest trust signal — but needs actual
+      photography, not stock faces.
+    </p>
+
+    <div class="row">
+      <div class="field">
+        <h4>Colour palette</h4>
+        <div class="palette">
+          <div class="swatch" style="background:#0A0A12;">#0A0A12</div>
+          <div class="swatch" style="background:#2A1F15;">#2A1F15</div>
+          <div class="swatch" style="background:#4A3525;">#4A3525</div>
+          <div class="swatch" style="background:#F04B00;color:white;">#F04B00</div>
+        </div>
+      </div>
+      <div class="field">
+        <h4>Envato search terms</h4>
+        <ul>
+          <li>"editorial business photography dark"</li>
+          <li>"team meeting office low light"</li>
+          <li>"engineer at screen dark office"</li>
+          <li>"consultant workshop cinematic"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <h4>Reference sites (live examples)</h4>
+        <ul>
+          <li><a href="https://www.mckinsey.com/capabilities/quantumblack" style="color:#F04B00;">mckinsey.com/quantumblack</a></li>
+          <li><a href="https://slalom.com" style="color:#F04B00;">slalom.com</a></li>
+          <li><a href="https://www.bcg.com/x" style="color:#F04B00;">bcg.com/x</a></li>
+        </ul>
+      </div>
+      <div class="field">
+        <h4>Best for</h4>
+        <span class="best-for">Case studies</span>
+        <span class="best-for">About / Team page</span>
+        <span class="best-for">Service "in action" shots</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Direction 5 ===== -->
+<section class="direction">
+  <div class="preview d5">
+    <div class="preview-fake-hero">
+      <span class="phe">AI That Runs Your Operations</span>
+      <div class="phh">Production AI.<br>Not a pilot.</div>
+      <div class="phs">Live dashboards. Measured outcomes.</div>
+      <div class="phcta">See it work →</div>
+    </div>
+    <div class="d5-dashboard">
+      <div class="d5-bar a"></div>
+      <div class="d5-bar b"></div>
+      <div class="d5-grid">
+        <div class="d5-stat"><div class="num">+42%</div><div class="lbl">Deflection</div></div>
+        <div class="d5-stat"><div class="num">-38%</div><div class="lbl">CPA</div></div>
+        <div class="d5-stat"><div class="num">4.2h</div><div class="lbl">Saved /day</div></div>
+      </div>
+      <div class="d5-chart"></div>
+      <div class="d5-bar c"></div>
+      <div class="d5-bar d"></div>
+      <div class="d5-bar e"></div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="tag">Direction 05</div>
+    <div class="dname">Product-Led Dashboard</div>
+    <p class="dsub">
+      Hero is a dark UI mockup — a dashboard, a chat interface, a pipeline — next
+      to the headline. The product is the proof. Vercel, Supabase, Retool, Perplexity.
+      Brilliant when you have a product or case study to show. Slightly risky here
+      because Impart is services-first, not product-first — but could shine on
+      service-specific pages ("Custom AI Apps", "AI Agents").
+    </p>
+
+    <div class="row">
+      <div class="field">
+        <h4>Colour palette</h4>
+        <div class="palette">
+          <div class="swatch" style="background:#0A0A12;">#0A0A12</div>
+          <div class="swatch" style="background:#111120;">#111120</div>
+          <div class="swatch" style="background:#F04B00;color:white;">#F04B00</div>
+          <div class="swatch" style="background:#1A1A2E;">#1A1A2E</div>
+        </div>
+      </div>
+      <div class="field">
+        <h4>Envato search terms</h4>
+        <ul>
+          <li>"dark dashboard UI mockup"</li>
+          <li>"SaaS dashboard dark PSD"</li>
+          <li>"macbook mockup dark UI"</li>
+          <li>"AI chat interface mockup"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <h4>Reference sites (live examples)</h4>
+        <ul>
+          <li><a href="https://vercel.com" style="color:#F04B00;">vercel.com</a></li>
+          <li><a href="https://supabase.com" style="color:#F04B00;">supabase.com</a></li>
+          <li><a href="https://perplexity.ai" style="color:#F04B00;">perplexity.ai</a></li>
+        </ul>
+      </div>
+      <div class="field">
+        <h4>Best for</h4>
+        <span class="best-for">Service: Custom AI Apps</span>
+        <span class="best-for">Service: AI Agents</span>
+        <span class="best-for">Case study detail pages</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recommendation ===== -->
+<div class="howto">
+  <h3>My recommendation</h3>
+  <p>
+    Mix and match — but pick one primary. <strong style="color:white;">Direction 03
+    (Cinematic 3D Gradient)</strong> is my lead pick for the homepage hero. It
+    matches your existing dark + orange palette, reads as premium and enterprise,
+    and leaves headroom for the AI-specialist positioning without looking like a
+    generic SaaS template.
+  </p>
+  <p>
+    Use <strong style="color:white;">Direction 01 (Generative Data Flow)</strong>
+    as a secondary treatment on service page heroes — it's cheaper to source and
+    keeps variety across the site.
+  </p>
+  <p>
+    Use <strong style="color:white;">Direction 04 (Editorial Photography)</strong>
+    for case studies and the About page once real photography exists.
+  </p>
+  <p>
+    Use <strong style="color:white;">Direction 05 (Product-Led Dashboard)</strong>
+    on the "Custom AI Apps" and "AI Agents" service pages specifically — they're
+    the services that earn a product mockup.
+  </p>
+  <p>
+    Skip <strong style="color:white;">Direction 02 (Editorial Minimal)</strong> for
+    now. It's the hardest to pull off without a full art-direction team and the
+    weakest differentiator in SA's agency market. Revisit if you rebrand later.
+  </p>
+  <p style="margin-top:24px;">
+    <strong style="color:white;">When you're on Envato:</strong> hunt for the
+    <code>01</code> and <code>03</code> assets first — 1 big hero loop or still
+    for each. That unblocks the homepage. Then grab 5 <code>01</code>-style
+    visuals for service page heroes. Skip <code>05</code> dashboard mockups
+    unless you want to commit to the product-led direction on Custom AI Apps.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<p style="color:#64748B; font-size:13px; text-align:center;">
+  Impart Agency · Visual Direction Board · 2026-04-21 · Cowork
+</p>
+
+</div>
+</body>
+</html>

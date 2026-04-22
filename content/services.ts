@@ -828,6 +828,230 @@ export const services: Service[] = [
       ],
     },
   },
+
+  // ─── Primary value propositions (homepage → service page direct links) ──────
+
+  {
+    slug: "ai-operations-audit",
+    title: "The AI Operations Audit",
+    shortTitle: "AI Audit",
+    tagline: "Find the three AI projects that will pay for themselves in ninety days, and kill the ones that won't.",
+    description:
+      "A six-week engagement that produces a ranked opportunity list, a ninety-day implementation plan for the top pick, and a board-ready report with ROI modelling and a POPIA compliance register.",
+    icon: "ClipboardCheck",
+    hero: {
+      headline: "The AI Operations Audit",
+      subheadline:
+        "Find the three AI projects that will pay for themselves in ninety days, and kill the ones that won't. Six weeks. Fixed fee. Board-ready output.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "A six-week engagement that produces three deliverables. First, a ranked list of AI opportunities inside your business, scored by expected ROI, implementation cost, time to value, data readiness, and regulatory risk. Second, a ninety-day implementation plan for the top opportunity, scoped to the point where it can be executed. Third, a board-ready report with financial modelling and a POPIA compliance register for each recommended initiative.",
+    benefits: [
+      { title: "Ranked opportunity list", description: "Eight to fifteen AI opportunities identified, three to five recommended, each scored by expected ROI and implementation cost." },
+      { title: "Ninety-day implementation plan", description: "The top-ranked opportunity scoped end to end — effort, cost, data requirements, and the team needed to deliver it." },
+      { title: "Board-ready report", description: "Financial modelling, risk register, and a POPIA compliance assessment for every recommended initiative." },
+      { title: "Data-readiness assessment", description: "An honest view of which opportunities your data is ready to support and which ones need foundations work first." },
+      { title: "Fixed-fee engagement", description: "No meter running. One fee, six weeks, three deliverables. You own everything we produce." },
+      { title: "Executable on day one", description: "If you want us to build what's in the plan, we can start the week after handover. No gap, no rebriefing." },
+    ],
+    process: [
+      { step: 1, title: "Kick-off", description: "Align on scope, access requirements, and the executive sponsor. Mutual NDA signed before discovery begins." },
+      { step: 2, title: "Discovery", description: "Interviews with process owners across the business. Systems inventory. Data landscape assessment." },
+      { step: 3, title: "Opportunity mapping", description: "Document every AI opportunity identified. Map to cost lines, process owners, and data assets." },
+      { step: 4, title: "Scoring", description: "Score each opportunity on ROI, feasibility, data readiness, POPIA posture, and time to value." },
+      { step: 5, title: "Plan", description: "Build the ninety-day implementation plan for the top-ranked opportunity. Scope to execution-ready." },
+      { step: 6, title: "Handover", description: "Board-ready report presented to the executive sponsor. Full handover pack delivered." },
+    ],
+    outcomes: [
+      "Six weeks from kickoff to board-ready deliverables.",
+      "Ranked AI opportunity backlog with ROI projections and data-readiness ratings.",
+      "Ninety-day implementation plan for the top opportunity, execution-ready from day one.",
+      "POPIA compliance register for every recommended initiative.",
+    ],
+    faqs: [
+      {
+        question: "Do we have to use you to build what's in the plan?",
+        answer: "No. The audit is a standalone deliverable. You can shop it around, give it to your internal team, or sit on it. We believe the plan is our best sales pitch — so we ship it that way.",
+      },
+      {
+        question: "What happens if our data isn't ready for AI?",
+        answer: "You'll get a data-readiness report that names the gaps, with a plan to fix them. That's often the first follow-on engagement — data foundations before applications.",
+      },
+      {
+        question: "Who's in the room from our side?",
+        answer: "A sponsor at C-suite or one level below, a data lead, and two or three process owners. We keep the footprint small to move fast.",
+      },
+      {
+        question: "Can you sign NDAs before we share anything?",
+        answer: "Yes. Mutual NDA signed before discovery begins. Sensitive business data never leaves your environment unless you explicitly authorise it.",
+      },
+      {
+        question: "What if the board doesn't approve the recommendations?",
+        answer: "That happens. The deliverable is the analysis and the plan — what you do with it is your call. We've seen audit outputs used as internal change management tools as much as procurement briefs.",
+      },
+    ],
+    relatedSlugs: ["popia-safe-ai", "ai-revenue-agents", "custom-ai-applications"],
+    seo: {
+      title: "AI Operations Audit South Africa | Impart Agency",
+      description:
+        "Six-week AI audit for South African enterprises. Ranked opportunity list, ninety-day plan, board-ready report. Fixed fee. POPIA-compliant. Impart Agency.",
+      keywords: [
+        "ai operations audit south africa",
+        "ai opportunity assessment",
+        "ai strategy audit south africa",
+        "enterprise ai assessment",
+      ],
+    },
+  },
+
+  {
+    slug: "popia-safe-ai",
+    title: "POPIA-Safe Enterprise AI",
+    shortTitle: "POPIA-Safe AI",
+    tagline: "Use AI on your actual client files, without the compliance risk.",
+    description:
+      "A private AI stack deployed inside your Azure South Africa tenancy or on-premise. Private model endpoints, retrieval-augmented knowledge against your own document libraries, and governed audit logging that satisfies POPIA accountability requirements.",
+    icon: "ShieldCheck",
+    hero: {
+      headline: "POPIA-Safe Enterprise AI",
+      subheadline:
+        "Use AI on your actual client files, without the compliance risk. Private model endpoints inside your tenancy. South African hosting. Governed audit logging from day one.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "A private AI stack deployed inside your Azure South Africa tenancy or on-premise depending on your regulatory profile. The system typically includes three layers: a private LLM endpoint that processes sensitive documents without leaving your tenancy, a retrieval-augmented knowledge system built against your own document libraries, and a governed user layer with audit logging that satisfies POPIA accountability requirements.",
+    benefits: [
+      { title: "Private model endpoints", description: "Your data never leaves your tenancy. No third-party processing of privileged or sensitive documents." },
+      { title: "South African hosting", description: "Azure South Africa North or AWS Cape Town by default. On-premise where your regulatory profile demands it." },
+      { title: "Retrieval-augmented knowledge", description: "AI that knows your policies, contracts, procedures, and case history — built on your documents, not the internet." },
+      { title: "POPIA audit logging", description: "Access controls, audit trails, and data lineage from the first sprint. Reportable to your information officer from day one." },
+      { title: "Phased rollout", description: "Start with two or three functions (legal, compliance, operations), measure the outcome, then expand. No big-bang deployment." },
+      { title: "Ongoing AI Ops", description: "Monthly retainer option for monitoring, drift detection, retraining, and expansion. Clean exit whenever the value stops matching the fee." },
+    ],
+    process: [
+      { step: 1, title: "Discovery", description: "Map your regulatory profile, data landscape, current tooling, and the highest-value use cases for private AI." },
+      { step: 2, title: "Architecture", description: "Design the private stack — model selection, hosting configuration, retrieval architecture, access controls." },
+      { step: 3, title: "Data prep", description: "Ingest, index, and govern your source documents for the retrieval layer. POPIA classification applied." },
+      { step: 4, title: "Build", description: "Deploy the private model endpoint, knowledge system, and user interface inside your environment." },
+      { step: 5, title: "Pilot", description: "Controlled rollout to two or three functions. Measure accuracy, adoption, and compliance posture." },
+      { step: 6, title: "Operate", description: "Handover to your team or retain us on AI Ops. Ongoing monitoring, retraining, and expansion by function." },
+    ],
+    outcomes: [
+      "A private AI stack inside your own tenancy — no cross-border data transfer.",
+      "Staff using AI on actual client files, inside a governed, auditable system.",
+      "POPIA compliance posture documented and reportable from day one.",
+      "Expansion path across functions without rebuilding the foundation.",
+    ],
+    faqs: [
+      {
+        question: "Is this compliant with the April 2025 POPIA amendments?",
+        answer: "Yes. The architecture is designed specifically for the Section 72 cross-border transfer restrictions. Data stays in South African jurisdiction unless you explicitly authorise otherwise in writing.",
+      },
+      {
+        question: "Can it work with Microsoft 365 / SharePoint?",
+        answer: "Yes. We build the retrieval layer on top of your existing SharePoint, shared drives, and document repositories. Your staff continue using the tools they know.",
+      },
+      {
+        question: "What AI models power it?",
+        answer: "We deploy private endpoints — typically Anthropic Claude or Azure OpenAI — configured so your data is processed inside your tenancy. We never use the public API endpoints for client data.",
+      },
+      {
+        question: "How long does a typical implementation take?",
+        answer: "Eight to sixteen weeks depending on integration complexity and the number of functions in the pilot. The first function is typically live within ten weeks of kickoff.",
+      },
+      {
+        question: "Do you provide the infrastructure, or do we?",
+        answer: "You provide the Azure or AWS tenancy. We provision, configure, and manage everything inside it. You own the infrastructure and the data. We own the engagement deliverable.",
+      },
+    ],
+    relatedSlugs: ["ai-operations-audit", "ai-revenue-agents", "data-foundations"],
+    seo: {
+      title: "POPIA-Safe AI for Enterprises South Africa | Impart Agency",
+      description:
+        "Private AI stacks for South African regulated enterprises. POPIA-compliant. Azure South Africa hosting. Private model endpoints. Impart Agency.",
+      keywords: [
+        "popia safe ai south africa",
+        "private ai south africa",
+        "enterprise ai compliance south africa",
+        "azure south africa ai",
+      ],
+    },
+  },
+
+  {
+    slug: "ai-revenue-agents",
+    title: "AI Revenue Agents",
+    shortTitle: "Revenue Agents",
+    tagline: "Replace your most expensive repetitive work with an AI agent that runs twenty-four hours a day.",
+    description:
+      "Voice, chat, and hybrid agents deployed against the functions that scale poorly with headcount. Inbound sales, customer service, after-hours triage, back-office processing. Multilingual. Integrated with your CRM and telephony.",
+    icon: "Bot",
+    hero: {
+      headline: "AI Revenue Agents",
+      subheadline:
+        "Replace your most expensive repetitive work with an AI agent that runs twenty-four hours a day. Inbound sales, customer service, after-hours triage. Multilingual. Measurable inside the first month.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "An AI agent deployed against the specific function that is either your highest cost centre or your biggest growth ceiling. Inbound voice agents that handle routine calls with English, Afrikaans, and isiZulu coverage. Outbound qualification agents that book meetings for your sales team. After-hours triage agents that capture and qualify leads around the clock. Every deployment includes a handover layer to human staff for edge cases and a continuous improvement loop against the KPIs agreed at kickoff.",
+    benefits: [
+      { title: "Multilingual voice agents", description: "English, Afrikaans, and isiZulu coverage out of the box. Additional language support on request." },
+      { title: "CRM and telephony integration", description: "Every interaction logged, scored, and routed — no manual data entry, no lost leads." },
+      { title: "Measurable in weeks", description: "KPIs agreed at kickoff. We report against them weekly from the first month of production." },
+      { title: "Always on", description: "After-hours, weekends, peak events. The agent does not take leave, does not get sick, and does not have a bad day." },
+      { title: "Human handover built in", description: "Edge cases route to your team automatically. The agent knows what it can handle and what it cannot." },
+      { title: "Continuous improvement loop", description: "Monthly retraining against live interaction data. The agent gets better the longer it runs." },
+    ],
+    process: [
+      { step: 1, title: "Function scoping", description: "Identify the specific function — call type, volume, current cost, and the KPI that defines success." },
+      { step: 2, title: "Integration mapping", description: "Map the CRM, telephony, and data systems the agent needs to connect with." },
+      { step: 3, title: "Build", description: "Develop the agent logic, conversation flows, escalation rules, and integration layer." },
+      { step: 4, title: "Test", description: "Controlled testing against real call types. Tune until accuracy and escalation rates hit the agreed thresholds." },
+      { step: 5, title: "Pilot", description: "Live deployment on a subset of traffic. Measure KPIs against baseline. Iterate." },
+      { step: 6, title: "Scale", description: "Full deployment once pilot KPIs are hit. Continuous improvement retainer if you want us on the system." },
+    ],
+    outcomes: [
+      "Measurable KPI movement inside the first month of production.",
+      "After-hours and peak-period coverage without headcount.",
+      "Every interaction logged, scored, and integrated with your CRM.",
+      "Continuous improvement — the agent improves every month it runs.",
+    ],
+    faqs: [
+      {
+        question: "What functions are best suited to voice agents?",
+        answer: "High-volume, predictable interactions. Inbound queries, appointment booking, lead qualification, after-hours triage, basic customer service. If a competent junior staffer handles it in under five minutes, a voice agent can too.",
+      },
+      {
+        question: "How do you handle edge cases and complex queries?",
+        answer: "We design the escalation layer at the start of every engagement. Edge cases route to your human team automatically — the agent knows its limits.",
+      },
+      {
+        question: "Is this POPIA-compliant?",
+        answer: "Yes. Call recording, data retention, and consent flows are built to the POPIA standard from the first sprint. We document every data flow before we go live.",
+      },
+      {
+        question: "What telephony systems do you integrate with?",
+        answer: "Most enterprise telephony stacks — Twilio, Microsoft Teams, Genesys, Avaya, and others. We confirm compatibility in the integration mapping session before scoping.",
+      },
+      {
+        question: "How quickly can we see ROI?",
+        answer: "Most deployments show measurable KPI movement inside the first four weeks of production. We agree the baseline and the target at kickoff — you see the number weekly.",
+      },
+    ],
+    relatedSlugs: ["ai-operations-audit", "popia-safe-ai", "custom-ai-applications"],
+    seo: {
+      title: "AI Revenue Agents South Africa | Impart Agency",
+      description:
+        "AI voice and chat agents for South African enterprises. Inbound sales, customer service, after-hours triage. Multilingual. Measurable ROI. Impart Agency.",
+      keywords: [
+        "ai voice agent south africa",
+        "ai revenue agent south africa",
+        "ai call centre south africa",
+        "conversational ai south africa",
+      ],
+    },
+  },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

@@ -1,9 +1,11 @@
 import type { ElementType } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight, CheckCircle2,
   Globe, ShoppingCart, Code2, Smartphone, Sparkles,
   TrendingUp, BarChart3, FileText, Palette,
+  Cpu, Map, Database, Bot, ClipboardCheck, ShieldCheck,
 } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { Badge } from "@/components/ui/Badge";
@@ -21,13 +23,18 @@ import { site } from "@/content/site";
 const iconMap: Record<string, ElementType> = {
   Globe, ShoppingCart, Code2, Smartphone, Sparkles,
   TrendingUp, BarChart3, FileText, Palette,
+  Cpu, Map, Database, Bot, ClipboardCheck, ShieldCheck,
 };
 
 interface ServicePageTemplateProps {
   service: Service;
+  /** Optional hero background image path (relative to /public). */
+  heroBackground?: string;
+  /** Optional tileable pattern image for the content section. */
+  contentPattern?: string;
 }
 
-export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
+export function ServicePageTemplate({ service, heroBackground, contentPattern }: ServicePageTemplateProps) {
   const Icon = iconMap[service.icon] ?? Globe;
   const relatedServices = getRelatedServices(service.relatedSlugs);
   const whatsappUrl = formatWhatsAppUrl(
@@ -40,6 +47,25 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Service hero">
         <div className="absolute inset-0 bg-brand-bg" aria-hidden="true" />
+        {/* Optional hero background image */}
+        {heroBackground && (
+          <div className="absolute inset-0" aria-hidden="true">
+            <Image
+              src={heroBackground}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-right opacity-35"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: "linear-gradient(180deg, #0A0A12 0%, transparent 35%, transparent 65%, #0A0A12 100%)",
+              }}
+            />
+          </div>
+        )}
         <div
           className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.05] blur-[100px]"
           style={{ background: "radial-gradient(circle, #F04B00 0%, transparent 70%)" }}
@@ -167,7 +193,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
                 What Success Looks Like
               </h2>
               <p className="text-brand-muted leading-relaxed">
-                Every engagement is defined by the outcomes we commit to — not just the work we do.
+                Every engagement is defined by the outcomes we commit to. Work output matters only to the extent that those outcomes land.
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.15}>
@@ -253,33 +279,32 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
             <AnimatedSection delay={0.1}>
               <div className="rounded-2xl bg-brand-elevated border border-brand-border overflow-hidden px-6">
                 <Accordion type="single" collapsible>
-                  {/* We'll use the pricing FAQs if available, otherwise generic ones */}
-                  {[
+                  {(service.faqs ?? [
                     {
-                      question: `How much does ${service.title.toLowerCase()} cost?`,
-                      answer: `Every project is scoped individually based on your specific requirements. Get in touch for a free, no-obligation quote tailored to your needs.`,
+                      question: `How do you scope and price ${service.shortTitle} engagements?`,
+                      answer: `Every engagement is scoped to a specific function and cost line. We give you a clear proposal within 48 hours of your first conversation with us — no obligation.`,
                     },
                     {
-                      question: "How long will my project take?",
+                      question: "How long do engagements typically run?",
                       answer:
-                        "Timeline depends on scope and complexity. We'll give you a clear timeline estimate as part of your proposal — and we stick to it.",
+                        "Most engagements run ten weeks from scope to handover, with a thirty-day managed production period and a ninety-day guarantee on the agreed outcome.",
                     },
                     {
-                      question: "Will I have a single point of contact?",
+                      question: "Who leads our engagement?",
                       answer:
-                        "Yes — every client gets a dedicated account manager who is your main point of contact throughout the project and beyond.",
+                        "A named senior practitioner with enterprise AI delivery on record. They take your engagement from scope through to handover and AI Ops.",
                     },
                     {
-                      question: "What do you need from me to get started?",
+                      question: "What do we need to get started?",
                       answer:
-                        "A brief outline of your goals, your audience, and any existing brand materials is a great start. We'll guide you through the rest in our discovery session.",
+                        "Tell us the function or cost line you want to address. We will come back with a scoped proposal and the cost line it replaces within one business day.",
                     },
                     {
-                      question: "Do you offer ongoing support after completion?",
+                      question: "What is covered by the ninety-day guarantee?",
                       answer:
-                        "Absolutely. We offer maintenance retainers, ongoing development support, and ad-hoc hourly work. Most clients prefer a continuing relationship.",
+                        "Every engagement ships with a measurable business outcome agreed at kickoff. If the system has not earned its keep by day ninety, we keep working — at our cost — until it does.",
                     },
-                  ].map((faq, i) => (
+                  ]).map((faq, i) => (
                     <AccordionItem key={i} value={`faq-${i}`}>
                       <AccordionTrigger>{faq.question}</AccordionTrigger>
                       <AccordionContent>{faq.answer}</AccordionContent>
@@ -301,10 +326,10 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
         <div className="container-wide relative z-10 text-center">
           <AnimatedSection>
             <h2 className="font-display text-3xl lg:text-4xl font-bold text-white mb-4">
-              Ready to Get Started?
+              Tell us the function.
             </h2>
             <p className="text-brand-muted text-lg mb-8 max-w-xl mx-auto">
-              Let&apos;s talk about your project. We&apos;ll give you a free, no-obligation proposal within 48 hours.
+              Share the cost line you want to address. We will come back inside one business day with a scoped proposal.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
@@ -314,7 +339,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
                 </Link>
               </Button>
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/pricing">View Pricing</Link>
+                <Link href="/how-we-engage">How We Engage</Link>
               </Button>
             </div>
           </AnimatedSection>

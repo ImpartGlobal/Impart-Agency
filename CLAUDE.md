@@ -168,14 +168,21 @@ capabilities subordinated.
 
 ### Liam's decisions (locked 2026-04-21 — use these as ground truth)
 
-1. **Hero H1 — Option B (authority-led):**
-   - Pre-headline: *The AI Partner for South African Enterprise*
-   - H1: *We Make AI Work in Your Business.*
-   - Sub: *Strategy, implementation, and operations for companies that want
-     AI to ship — not sit in a pilot deck. Senior practitioners,
-     POPIA-compliant by default, month-to-month.*
+1. **Hero H1 — Option F, "A.I." clarity revision (locked 2026-04-22, second
+   pass, superseding the earlier Option F wording):**
+   - Pre-headline: *AI for the work that drains your margin*
+   - H1: *We Build A.I. Systems that Pay for Themselves*
+   - Sub: *AI agents that take over your highest-volume functions, running
+     continuously at a lower cost than the teams they augment. Built for
+     regulated industries, covered by our ninety-day guarantee, priced so
+     the savings fund the build.*
    - Primary CTA: *Request a Proposal*
-   - Secondary CTA: *Explore Our Work*
+   - Secondary CTA: *How We Engage*
+   - Notes for Claude Code: H1 uses title case and the punctuated form
+     "A.I." (not "AI") to reassure visitors they've landed on an AI-focused
+     site. Gradient treatment sits on "A.I. Systems". No trailing full stop
+     in the new wording. Subhead still uses "ninety-day" spelled out, not
+     "90-day", per brand voice rules.
 2. **Pricing — hide it.** Remove `/pricing` from primary nav. Replace with a
    `/how-we-engage` page describing engagement shapes (AI Audit, Scoped POC,
    Implementation Programme, Ongoing AI Ops) without rand figures. Keep
@@ -241,6 +248,234 @@ tools. Newest entries at the top. Format:
 - What changed / was decided
 - Any follow-ups for the other tool
 ```
+
+### 2026-04-22 — Claude Code — Pre-launch polish directive complete (feat/pre-launch-polish)
+
+All P-steps from `docs/claude-code-directive.md` executed in order. Branch
+ready to merge and deploy.
+
+**P0 — Housekeeping:** CSS vars synced to Tailwind tokens in `app/globals.css`
+(copper, prism, surface-tint, border-warm, ink, ink-soft, orange-deep). Fixed
+`.gradient-text` end stop `#FF9500 → #FF6B35`. Ported four AI capability
+services into `content/services.ts`. Wired Stats section into `app/page.tsx`.
+
+**P1 — Hero:** `hero-liquid-chrome-copper.jpg` wired via `next/image` with
+`mix-blend-mode: screen`, 180deg gradient brackets. Grid pattern: 90px/0.02.
+Headline gradient on "A.I. Systems". Trust badges now use lucide icons
+(UserRound, ShieldCheck, Building2). Padding increased pt-28/lg:pt-40.
+
+**P2 — ValuePropositions:** Shape PNGs wired (pyramid/spiral/prism) at 52px
+opacity-60 screen. Data moved to `content/values.ts`. Hover: card-lift +
+inset-gleam. Outcome tag: copper instead of orange.
+
+**P3 — Section graphics:** Ambient images added to WhyImpart
+(bg-dispersion-spectrum), Process (bg-horizon-waves-orange), Testimonials
+(bg-glass-prism-clean), Support (bg-horizon-waves-copper), CaseStudies
+(accent-prism-beam). Token/copy polish per brand guide on each.
+
+**P4 — Components:** Button: copper variant, active state micro-interactions,
+Slot/asChild crash fixed (see below). Badge: copper + prism variants. Header:
+scroll threshold 20→40, "Request a Proposal" CTAs. Footer: shadow-inset-gleam,
+AI-positioning description, POPIA compliance note, "Request a Proposal" CTAs.
+HomepageContact: accent-prism-curve wired.
+
+**P5 — Service pages:** ServicePageTemplate extended with optional
+`heroBackground` and `contentPattern` props; icon map expanded for AI icons
+(Bot, ClipboardCheck, ShieldCheck, Cpu, Map, Database). Three primary VP
+service entries added to `content/services.ts` (ai-operations-audit, popia-safe-ai,
+ai-revenue-agents) each with 6 benefits, 6 process steps, outcomes, and 5
+bespoke FAQs. Three `app/services/*/page.tsx` routes created with matching
+asset props per `docs/graphics-map.md`.
+
+**P6 — Scrollbar:** 8px thumb with copper-to-border gradient; Firefox fallback
+(`scrollbar-width thin`, `scrollbar-color copper/bg`).
+
+**P7 — Final verification:**
+- `tsc --noEmit`: clean.
+- `npm run lint`: clean (0 warnings, 0 errors).
+- `npm run build`: **26 pages prerendered, 0 errors.**
+- Bug fixed: `Button` with `asChild` was passing `[null, children]` to Radix
+  `Slot`, which calls `React.Children.only` — crashed prerender on every
+  service + pricing page. Fix: when `asChild=true`, render only `{children}`;
+  when `asChild=false`, wrap spinner + children in a Fragment. Pre-existing bug;
+  this pass was the first time `npm run build` caught it.
+
+**Lighthouse:** not yet run — requires `npm run start` against a running server.
+Run `npm run build && npm run start`, then Lighthouse against localhost:3000 and
+post LCP/CLS/TBT numbers here.
+
+**Follow-up for Cowork / Liam:**
+- Three new AI service pages are live in the build: `/services/ai-operations-audit`,
+  `/services/popia-safe-ai`, `/services/ai-revenue-agents`. Nav and sitemap may
+  need updating to surface them.
+- Graphics asset files referenced in `docs/graphics-map.md` must exist in
+  `public/graphics/` for the image components to render (currently scaffold paths;
+  Cowork indicated assets are in the repo — verify with a `ls public/graphics/`).
+- `feat/pre-launch-polish` branch is ready to push and PR against main.
+
+### 2026-04-22 — Cowork — Pre-launch polish pass complete
+
+While Liam was out of office. Scope was Liam's brief: "make any other
+changes you see fit... suggest any and all updates to the overall
+aesthetic of the site etc. so it also blends better with the new
+graphics... be thorough. be intentional." Five pieces of work landed.
+
+**1. Voice compliance sweep.** Ran the voice rules from
+`docs/brand-benchmark.md` §6 across `components/`. Found and fixed three
+em dashes plus one "not just the work we do" contrastive construction in
+`components/shared/ServicePageTemplate.tsx`. All remaining em dashes in
+`components/sections/*` are in developer comments, not user copy. No
+banned vocabulary hits in user-visible section code. The services.ts
+file still has legacy generic-agency copy with many violations, but this
+is blocked on Claude Code porting §15 AI service copy and will resolve
+in that pass.
+
+**2. Decision 8 compliance.** `components/sections/Stats.tsx` was
+orphaned from `app/page.tsx` but still rendered numerical claims if
+imported (150+ Projects, 80+ Clients, 98% Retention). Replaced the
+content file with qualitative trust signals (Senior Practitioners Only,
+POPIA-Compliant by Default, 2KO Business Advisory Group) per decision 8.
+Rewrote the component to match. Legacy `stats` export retained as a
+deprecated alias so nothing breaks. Claude Code: the component is still
+not wired into the homepage (Hero trust-badge row is the canonical
+placement). Decide whether to delete the orphan pair or re-wire. Either
+is fine.
+
+**3. Tailwind tokens extended.** Added to `tailwind.config.ts` (strictly
+additive, no existing tokens removed):
+  - Colours: `brand-surface-tint`, `brand-border-warm`, `brand-orange-deep`,
+    `brand-copper` + variants, `brand-prism` + variants, `brand-ink`,
+    `brand-ink-soft`.
+  - Gradients: `gradient-copper`, `gradient-prism`, `gradient-fade-top`,
+    `gradient-fade-bottom`, `gradient-fade-both`.
+  - Shadows: `glow-copper`, `glow-prism`, `card-lift`, `inset-gleam`.
+  - Blur: added `blur-glow` (120px) and `backdrop-blur-xs` (2px).
+  Every token is used somewhere in the aesthetic-upgrades spec so nothing
+  is dead code. Claude Code: mirror the most-used of these in
+  `app/globals.css` :root per `docs/aesthetic-upgrades.md` §0.2.
+
+**4. `docs/brand-guide.md` v1.0 landed.** Full seventeen-section brand
+guide, written against the yardstick structure in
+`docs/brand-benchmark.md` §5. Passes its own voice rules (no em dashes,
+no banned vocabulary in running copy). Sections cover doctrine,
+positioning, voice (four adjectives with do/don't pairs), tone shifts,
+naming, logo, colour, typography, layout, motion, imagery, editorial,
+case studies, commercial copy, empty states, social, governance. The
+guide is opinionated and specific, matching the Linear-Method reference
+benchmark. Claude Code and future writers: this is the operating manual.
+Read it while working, not after.
+
+**5. `docs/aesthetic-upgrades.md` landed.** Fifteen-section build brief
+for Claude Code. Each section names the file to edit, the change, and
+the reason. Ordered as a commit sequence from §0 housekeeping through
+§14 scrollbar refinement. Nothing in the brief requires inventing copy
+or figures. If followed in order, the site comes out of this pass with
+the new graphics wired in, new tokens used, and a clear route to a
+`npm run build` + Lighthouse numbers post.
+
+**Follow-up for Claude Code (consolidated).**
+
+The critical path is:
+
+1. Port audit §15 copy into `content/services.ts`. Extend the `Service`
+   type if new fields are needed (§15 uses `stack` which may be new).
+   Run `tsc --noEmit`. This is the single biggest quality-lift remaining
+   for the site.
+2. Work through `docs/aesthetic-upgrades.md` in order. Each section is
+   a commit. §0 housekeeping first (tiny but important), then §1 Hero,
+   then §11 Button and §12 Badge so §2 onwards can use the new variants.
+3. `docs/graphics-map.md` is the asset work order. Referenced from the
+   upgrades brief as needed.
+4. `app/globals.css` CSS variables: add the missing ones per upgrades
+   brief §0.2.
+5. After all the above: run `npm run build`, then `npm run lint`, then
+   `tsc --noEmit`. Post Lighthouse LCP/CLS/TBT numbers back here.
+
+**Do not do without confirming with Liam.**
+
+- Do not ship the `/guarantee` page in primary nav or homepage until
+  legal-grade terms are confirmed.
+- Do not ship `/team` until photography and bios land.
+- Do not invent case studies, stats, or client logos.
+- Do not delete `content/pricing.ts`.
+- Do not add new brand colours or gradients beyond the three named in
+  `docs/brand-guide.md` §7.
+
+### 2026-04-22 — Cowork — Asset pipeline landed in `/public/graphics/`
+
+- Extracted all nine Envato packs Liam dropped in `C:\Users\User\Pictures\Impart`
+  and curated 16 final assets into `/public/graphics/`, split across
+  `hero/`, `backgrounds/`, `shapes/`, `accents/`, `patterns/`.
+- Every asset has been resized and optimised (web JPG for backgrounds,
+  PNG with alpha preserved for shapes and accents). Total added weight
+  ~7.1 MB across 16 files. Per-file sizes documented in
+  `docs/graphics-map.md`.
+- Placement decisions locked per-asset in `docs/graphics-map.md`. Shape
+  language, colour temperature, and section theme line up section by
+  section: copper chrome → hero, horizon waves (orange/copper) →
+  Process/Support, dispersion spectrum → WhyImpart, glass prism →
+  Testimonials, pyramid/spiral/prism → three ValuePropositions cards,
+  hex mesh → POPIA page, etc.
+- Skipped one pack (`liquid-glass-abstract-backgrounds`) because its
+  red/blue/pink stripe palette fights brand-orange. Did not invent
+  placements for anything that didn't fit.
+- Follow-up for Claude Code: `docs/graphics-map.md` is the work order.
+  Checklist at the bottom walks through the commits in order — start with
+  the hero background (`hero-liquid-chrome-copper.jpg`) and verify
+  contrast against the existing H1 before moving on. Do not swap assets
+  across sections without flagging; the mapping is deliberate. If
+  `content/values.ts` is the file backing ValuePropositions cards,
+  extend the type with an optional `accent?: string` field before paste
+  work so asset paths stay data-driven. After all placements land,
+  `npm run build` and post Lighthouse LCP/CLS numbers back in this log.
+
+### 2026-04-22 — Cowork — Hero H1 "A.I." clarity revision
+
+- Liam's feedback after seeing Option F live: the H1 needs "A.I." in it so
+  visitors confirm they've landed on an AI-focused site. Relying on the
+  pre-headline badge alone isn't enough at-a-glance reassurance.
+- New H1 (locked, supersedes the sentence-case Option F wording):
+  *We Build A.I. Systems that Pay for Themselves*
+- Title case, punctuated "A.I." (not "AI"), no trailing full stop. Gradient
+  treatment lives on "A.I. Systems" so the clarity anchor also carries the
+  brand-orange hit.
+- Updated in this pass: `components/sections/Hero.tsx` H1 markup,
+  `content/site.ts` tagline and `seo.defaultTitle`, CLAUDE.md decision 1.
+- Follow-up for Claude Code: if you're about to run a build, note that
+  the gradient span now wraps "A.I. Systems" rather than the old
+  "pay for themselves." phrase. Any screenshot reference docs or social
+  share copy that quoted the old H1 verbatim needs a sweep.
+
+### 2026-04-22 — Cowork — Hero H1 swapped, value-prop strategy landed
+
+- New file `docs/value-propositions.md`: three lead propositions for the
+  site (VP1 AI Operations Audit, VP2 POPIA-Safe AI, VP3 AI Revenue Agents)
+  based on local + international research. Ticket ranges, buyer problem,
+  proof architecture, path to first revenue all specified. Liam: "VP3 is
+  good, let's work with the idea of replacing and saving."
+- Hero H1 decision flipped from Option B to Option F. New copy:
+  - Pre-headline: *AI for the work that drains your margin*
+  - H1: *We build the systems that pay for themselves.*
+  - Sub: *AI agents that take over your highest-volume functions, running
+    continuously at a lower cost than the teams they augment. Built for
+    regulated industries, covered by our ninety-day guarantee, priced so
+    the savings fund the build.*
+  - Primary CTA: *Request a Proposal*
+  - Secondary CTA: *How We Engage*
+- CLAUDE.md decision 1 updated in place to match. The 2026-04-21 Option B
+  is superseded. Any Claude Code draft that still references the old H1
+  should be re-pointed before commit.
+- New file `docs/brand-benchmark.md`: yardstick document for the brand
+  guide. Seventeen-section structure prescribed, voice rules specified
+  (no em dashes, no "not X, but Y", refused vocabulary list).
+- Follow-up for Claude Code: Priority 2 homepage surgery uses the new
+  hero copy verbatim. The three-tile row below the hero should map to the
+  three VPs from `docs/value-propositions.md`: AI Operations Audit /
+  POPIA-Safe AI / AI Revenue Agents. Service-page rewrites (Priority 4)
+  need to be re-pointed at these three propositions rather than the four
+  in audit §11; Cowork will rewrite §11 copy against the new structure
+  before Claude Code paste-work starts, so do not begin Priority 4 copy
+  work until that rewrite lands.
 
 ### 2026-04-22 — Claude Code — Priority 1 scaffolding complete
 

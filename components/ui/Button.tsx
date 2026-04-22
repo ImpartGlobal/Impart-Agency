@@ -4,7 +4,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link";
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link" | "copper";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,14 +16,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-orange hover:bg-brand-orange-light text-white font-semibold shadow-glow-sm hover:shadow-glow-orange transition-all duration-200",
+    "bg-brand-orange hover:bg-brand-orange-light text-white font-semibold shadow-glow-sm hover:shadow-glow-orange active:translate-y-px active:shadow-none transition-all duration-200",
   secondary:
-    "bg-brand-surface hover:bg-brand-elevated text-white font-semibold border border-brand-border hover:border-brand-orange/40 transition-all duration-200",
+    "bg-brand-surface hover:bg-brand-elevated text-white font-semibold border border-brand-border hover:border-brand-orange/40 active:translate-y-px active:shadow-none transition-all duration-200",
   outline:
     "bg-transparent border border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white font-semibold transition-all duration-200",
   ghost:
     "bg-transparent hover:bg-brand-surface text-brand-muted hover:text-white font-medium transition-all duration-200",
   link: "bg-transparent text-brand-orange hover:text-brand-orange-light underline-offset-4 hover:underline font-medium p-0 h-auto transition-colors duration-200",
+  copper:
+    "bg-brand-copper hover:bg-brand-copper-light text-white font-semibold shadow-glow-sm hover:shadow-glow-copper active:translate-y-px active:shadow-none transition-all duration-200",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -60,30 +62,37 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {loading ? (
-          <svg
-            className="animate-spin h-4 w-4"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-            />
-          </svg>
-        ) : null}
-        {children}
+        {asChild ? (
+          // When rendering via Slot, pass a single child element only — Slot calls React.Children.only
+          children
+        ) : (
+          <>
+            {loading && (
+              <svg
+                className="animate-spin h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                />
+              </svg>
+            )}
+            {children}
+          </>
+        )}
       </Comp>
     );
   }

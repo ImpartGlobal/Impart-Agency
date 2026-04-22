@@ -1,41 +1,54 @@
+import Image from "next/image";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Badge } from "@/components/ui/Badge";
 
 const differentiators = [
   {
-    theirs: "Agencies that hand you a 50-page strategy and disappear",
-    ours: "We execute — and you see results, not decks",
+    theirs: "Pilots that sit in a deck for twelve months and never ship",
+    ours: "Production systems in under ninety days, covered by our guarantee",
   },
   {
-    theirs: "Cookie-cutter templates dressed up as bespoke",
-    ours: "Every build is custom-designed for your brand and goals",
+    theirs: "Cross-border data transfer that exposes you under POPIA",
+    ours: "Private AI inside your tenancy, in the Azure South Africa region",
   },
   {
-    theirs: "Junior staff working on your account",
-    ours: "Senior practitioners on every engagement",
+    theirs: "Junior consultants reading from an international playbook",
+    ours: "Senior practitioners with enterprise AI delivery on record",
   },
   {
-    theirs: "Vanity metrics — impressions, reach, 'brand awareness'",
-    ours: "Revenue-linked KPIs — leads, conversions, cost per acquisition",
+    theirs: "Generic frameworks that never touch your real systems",
+    ours: "Integration with your CRM, telephony, and document libraries",
   },
   {
-    theirs: "Black-box reporting you can't interpret",
-    ours: "Transparent, plain-language reporting every month",
+    theirs: "Hourly billing with no ceiling and no accountability",
+    ours: "Fixed-scope engagements priced against the cost line they replace",
   },
   {
-    theirs: "12-month lock-in contracts with no accountability",
-    ours: "Month-to-month retainers — we earn your business every month",
+    theirs: "Partners flown in from Dubai or London for the pitch",
+    ours: "Local senior team, 2KO Business Advisory Group in the room",
   },
 ];
 
 export function WhyImpart() {
   return (
     <section
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
       aria-labelledby="why-impart-heading"
     >
-      <div className="container-wide">
+      {/* Dispersion spectrum ambient background — cold/prism treatment */}
+      <div className="absolute inset-0 -z-0" aria-hidden="true">
+        <Image
+          src="/graphics/backgrounds/bg-dispersion-spectrum.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-20"
+          style={{ mixBlendMode: "screen" }}
+        />
+      </div>
+
+      <div className="container-wide relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left: Heading + context */}
           <AnimatedSection>
@@ -44,21 +57,33 @@ export function WhyImpart() {
               id="why-impart-heading"
               className="font-display text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
             >
-              We&apos;re Not the Agency{" "}
-              <span className="gradient-text">You&apos;ve Dealt With Before</span>
+              AI work that{" "}
+              <span className="bg-gradient-brand bg-clip-text text-transparent">
+                actually ships
+              </span>
             </h2>
             <p className="text-brand-muted text-lg leading-relaxed mb-8">
-              Most agencies oversell and underdeliver. They win your account with a slick pitch and then hand it to an account manager reading from a playbook.
+              Roughly eighty-five percent of enterprise AI initiatives stall before
+              they reach production. The reasons are almost never the model. They
+              are data foundations, integration complexity, governance, and the
+              absence of a delivery partner who has done this before.
             </p>
             <p className="text-brand-muted leading-relaxed mb-8">
-              Impart is different. We care about one thing: measurable growth for your business. No fluff, no vanity metrics, no hiding behind jargon. If it doesn&apos;t move the needle, we don&apos;t do it.
+              Impart is built for the fifteen percent that ship. We engage on
+              fixed scope, work against the cost line the system replaces, and
+              stand behind the outcome with a ninety-day guarantee. If the system
+              is not earning its keep inside ninety days of production, we keep
+              working for free until it is.
             </p>
-            <div className="p-5 rounded-2xl bg-brand-surface border border-brand-border">
+            {/* Commit card — shadow-card-lift + copper-deep top border */}
+            <div className="p-5 rounded-2xl bg-brand-surface border border-brand-border border-t-2 border-t-brand-copper-deep shadow-card-lift">
               <p className="text-white font-semibold mb-1">
-                Results-oriented by design.
+                Priced against the work we replace.
               </p>
               <p className="text-brand-muted text-sm">
-                We structure every engagement around outcomes. If we&apos;re not delivering value, you shouldn&apos;t be paying us. That&apos;s why we don&apos;t lock you into contracts — we earn your business month after month.
+                Every engagement is scoped around a specific function and its
+                current cost. Our fee is a defined portion of the saving, paid
+                once the system is producing. The build funds itself.
               </p>
             </div>
           </AnimatedSection>
@@ -66,17 +91,17 @@ export function WhyImpart() {
           {/* Right: Comparison table */}
           <AnimatedSection delay={0.15}>
             <div className="rounded-2xl overflow-hidden border border-brand-border">
-              {/* Header */}
+              {/* Header — prism accent for cold/governance feel per aesthetic-upgrades §3.2 */}
               <div className="grid grid-cols-2 text-xs font-semibold uppercase tracking-wider">
                 <div className="px-5 py-3 bg-brand-elevated text-brand-subtle border-b border-brand-border">
-                  Other Agencies
+                  The Industry Default
                 </div>
-                <div className="px-5 py-3 bg-brand-orange/10 text-brand-orange border-b border-brand-orange/20">
+                <div className="px-5 py-3 bg-brand-prism-muted text-brand-prism border-b border-brand-prism/20">
                   Impart Agency
                 </div>
               </div>
 
-              {/* Rows */}
+              {/* Rows — CheckCircle stays brand-orange in content rows */}
               {differentiators.map((item, i) => (
                 <div
                   key={i}

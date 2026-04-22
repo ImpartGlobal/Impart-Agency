@@ -15,7 +15,7 @@ export function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 20);
+    const handler = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -91,7 +91,7 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Button size="sm" asChild>
-              <Link href="/contact">Get a Quote</Link>
+              <Link href="/contact">Request a Proposal</Link>
             </Button>
           </div>
 
@@ -127,7 +127,7 @@ export function Header() {
           ))}
           <div className="pt-3 border-t border-brand-border mt-2">
             <Button className="w-full" asChild>
-              <Link href="/contact">Get a Free Quote</Link>
+              <Link href="/contact">Request a Proposal</Link>
             </Button>
           </div>
         </nav>

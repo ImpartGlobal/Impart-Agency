@@ -13,7 +13,7 @@ export function Footer() {
   );
 
   return (
-    <footer className="bg-brand-surface border-t border-brand-border" aria-label="Site footer">
+    <footer className="bg-brand-surface border-t border-brand-border shadow-inset-gleam" aria-label="Site footer">
       <div className="container-wide py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
@@ -27,7 +27,7 @@ export function Footer() {
               <span>Agency</span>
             </Link>
             <p className="text-brand-muted text-sm leading-relaxed max-w-xs mb-6">
-              The results-driven digital agency for South African businesses. Websites, apps, SEO, and paid advertising that compounds into real growth.
+              AI implementation for South African enterprises. Senior practitioners, POPIA-compliant by default, ninety-day guarantee on every engagement.
             </p>
 
             {/* Contact details */}
@@ -140,13 +140,13 @@ export function Footer() {
               Start a Project
             </h3>
             <p className="text-sm text-brand-muted leading-relaxed mb-4">
-              Ready to grow your business online? Let&apos;s talk about your goals.
+              Tell us the function. We will scope what it would take to run it with AI.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center w-full px-4 py-3 bg-brand-orange hover:bg-brand-orange-light text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-glow-sm hover:shadow-glow-orange"
+              className="inline-flex items-center justify-center w-full px-4 py-3 bg-brand-orange hover:bg-brand-orange-light text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-glow-sm hover:shadow-glow-orange active:translate-y-px active:shadow-none"
             >
-              Get a Free Quote
+              Request a Proposal
             </Link>
             <a
               href={whatsappUrl}
@@ -163,13 +163,24 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-brand-border">
-        <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="container-wide pt-4 pb-2">
+          <p className="text-xs text-brand-subtle mb-3">
+            POPIA-compliant by default. South African hosting on request. Info officer: {site.email}
+          </p>
+        </div>
+        <div className="container-wide pb-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-brand-subtle">
             © {year} {site.legalName}. All rights reserved.
           </p>
-          <p className="text-xs text-brand-subtle">
-            Built with purpose in South Africa.
-          </p>
+          <div className="flex items-center gap-4">
+            {site.social.linkedin && (
+              <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-subtle hover:text-white transition-colors">LinkedIn</a>
+            )}
+            {site.social.twitter && (
+              <a href={site.social.twitter} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-subtle hover:text-white transition-colors">X</a>
+            )}
+            <p className="text-xs text-brand-subtle">Built in South Africa.</p>
+          </div>
         </div>
       </div>
     </footer>

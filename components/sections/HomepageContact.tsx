@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Send, MessageCircle, CheckCircle2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
@@ -29,19 +30,31 @@ export function HomepageContact() {
         aria-hidden="true"
       />
 
+      {/* Prism curve accent — right edge */}
+      <Image
+        src="/graphics/accents/accent-prism-curve.png"
+        alt=""
+        width={200}
+        height={300}
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 opacity-40 hidden lg:block"
+      />
+
       <div className="container-wide relative z-10">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection className="text-center mb-12">
-            <Badge variant="orange" className="mb-4">Let&apos;s Talk</Badge>
+            <Badge variant="orange" className="mb-4">Request a Proposal</Badge>
             <h2
               id="contact-heading"
               className="font-display text-4xl lg:text-5xl font-bold text-white mb-4"
             >
-              Ready to{" "}
-              <span className="gradient-text">Grow Your Business?</span>
+              Tell us the function{" "}
+              <span className="bg-gradient-brand bg-clip-text text-transparent">you want to replace</span>
             </h2>
             <p className="text-brand-muted text-lg">
-              Tell us what you need and we&apos;ll respond within 2 business hours with a clear proposal.
+              Share the work that drains your margin. We&apos;ll come back inside
+              one business day with a scoped proposal and the cost line it
+              replaces.
             </p>
           </AnimatedSection>
 
@@ -96,10 +109,11 @@ function QuickContactForm({ whatsappUrl }: { whatsappUrl: string }) {
       <div className="text-center p-12 rounded-2xl bg-brand-surface border border-brand-border">
         <CheckCircle2 className="h-12 w-12 text-brand-orange mx-auto mb-4" aria-hidden="true" />
         <h3 className="font-display font-bold text-xl text-white mb-2">
-          We&apos;ve got your message!
+          We&apos;ve got your brief.
         </h3>
         <p className="text-brand-muted mb-6">
-          Expect a response within 2 business hours. In the meantime, feel free to WhatsApp us directly.
+          Expect a response inside one business day. If the matter is live,
+          WhatsApp goes to the engagement lead directly.
         </p>
         <Button variant="secondary" asChild>
           <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -167,7 +181,7 @@ function QuickContactForm({ whatsappUrl }: { whatsappUrl: string }) {
         </div>
         <div>
           <label htmlFor="hc-service" className="block text-sm font-medium text-white mb-1.5">
-            I Need Help With
+            Area of Interest
           </label>
           <select
             id="hc-service"
@@ -187,14 +201,14 @@ function QuickContactForm({ whatsappUrl }: { whatsappUrl: string }) {
 
       <div>
         <label htmlFor="hc-message" className="block text-sm font-medium text-white mb-1.5">
-          Tell Us About Your Project
+          Describe the Function
         </label>
         <textarea
           id="hc-message"
           rows={4}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="Brief description of what you're trying to achieve..."
+          placeholder="Which function is draining margin? What does it cost you today?"
           className="w-full px-4 py-3 rounded-xl bg-brand-elevated border border-brand-border text-white placeholder:text-brand-subtle text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors resize-none"
         />
       </div>

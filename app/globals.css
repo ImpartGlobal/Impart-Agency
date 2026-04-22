@@ -9,8 +9,18 @@
   --brand-border: #27273A;
   --brand-orange: #F04B00;
   --brand-orange-light: #FF6B35;
+  --brand-orange-deep: #B53800;
   --brand-muted: #A1A1AA;
   --brand-subtle: #71717A;
+  --brand-surface-tint: #14121E;
+  --brand-border-warm: #33251F;
+  --brand-ink: #FFFFFF;
+  --brand-ink-soft: #EDEDF0;
+  --brand-copper: #B87333;
+  --brand-copper-light: #E8A87C;
+  --brand-copper-deep: #7A4A1F;
+  --brand-prism: #4EA8B8;
+  --brand-prism-light: #7FD1DD;
 }
 
 @layer base {
@@ -76,7 +86,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #F04B00 0%, #FF9500 100%);
+    background: linear-gradient(135deg, #F04B00 0%, #FF6B35 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

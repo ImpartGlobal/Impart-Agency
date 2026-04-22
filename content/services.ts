@@ -14,6 +14,10 @@ export type Service = {
   benefits: { title: string; description: string }[];
   process: { step: number; title: string; description: string }[];
   outcomes: string[];
+  /** Optional stack callout — used by AI service pages. */
+  stack?: string[];
+  /** Optional FAQ pairs — used by AI service pages. */
+  faqs?: { question: string; answer: string }[];
   relatedSlugs: string[];
   seo: {
     title: string;
@@ -481,6 +485,297 @@ export const services: Service[] = [
       ],
     },
   },
+  // ─── AI Services (primary propositions) ────────────────────────────────────
+
+  {
+    slug: "custom-ai-applications",
+    title: "Custom AI Applications",
+    shortTitle: "Custom AI",
+    tagline: "The AI product your customers (or your team) actually use.",
+    description:
+      "Off-the-shelf AI tools are great for typing faster. But the AI that moves numbers is the one built on your data, for your users, in your brand. We design and ship custom AI apps — copilots, RAG systems, internal tools, client-facing products — end to end.",
+    icon: "Cpu",
+    hero: {
+      headline: "Custom AI Applications",
+      subheadline:
+        "Off-the-shelf AI tools are great for typing faster. But the AI that moves numbers is the one built on your data, for your users, in your brand. We design and ship custom AI apps — copilots, RAG systems, internal tools, client-facing products — end to end.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "A custom AI application is a product, not a chatbot. We design the interface, architect the retrieval and reasoning layer, integrate with your systems, and ship it as a stable piece of software your team or customers rely on every day. Web, mobile, or embedded — in your brand, on your terms.",
+    benefits: [
+      { title: "Built on your data", description: "Not fine-tuned on the internet. Your knowledge base, your documents, your schemas." },
+      { title: "Your brand, your UX", description: "Your logins, your interface — not another SaaS tab your team has to learn." },
+      { title: "Model-agnostic", description: "Anthropic, OpenAI, open-source. We pick per use case and explain the tradeoff before we choose." },
+      { title: "POPIA-compliant deployment", description: "On-prem, VPC, or Azure South Africa North. Regional hosting from day one." },
+      { title: "First production release in 6–10 weeks", description: "Not a pilot. A stable piece of software in the hands of real users." },
+      { title: "Full IP ownership", description: "Code, prompts, datasets. All yours. We sign a mutual NDA before we see anything sensitive." },
+    ],
+    process: [
+      { step: 1, title: "Scope", description: "Define the use case, the users, and the measurable outcome the application will drive." },
+      { step: 2, title: "Design", description: "Interface prototypes and retrieval architecture agreed before a line of code is written." },
+      { step: 3, title: "Data prep", description: "Ingest, clean, and index your source data for the retrieval layer." },
+      { step: 4, title: "Build", description: "Application development with weekly releases to internal staging." },
+      { step: 5, title: "Beta", description: "Controlled rollout to a subset of real users. Measure, tune, fix." },
+      { step: 6, title: "Launch", description: "Production deployment with monitoring, alerting, and a handover pack." },
+    ],
+    outcomes: [
+      "6–10 weeks from kickoff to production.",
+      "Example: a professional services firm's internal research copilot cuts analyst prep time per report from six hours to forty-five minutes.",
+    ],
+    faqs: [
+      {
+        question: "Who owns the model and the data?",
+        answer: "You do. Code, prompts, fine-tuning datasets, and any customer data stay with you. We sign a mutual NDA before we see anything sensitive.",
+      },
+      {
+        question: "Which AI model do you use?",
+        answer: "Whichever fits the job. Anthropic for reasoning-heavy work, OpenAI where it's strongest, open-source (Llama, Mistral) where cost or sovereignty demands it. We explain the tradeoff before we pick.",
+      },
+      {
+        question: "What about hallucinations?",
+        answer: "We design for it. Retrieval-grounded generation, citation-first UX, confidence thresholds, and human-in-the-loop on anything consequential. We'd rather ship an app that says \"I don't know\" than one that makes things up.",
+      },
+      {
+        question: "Can it be hosted in South Africa?",
+        answer: "Yes. Azure South Africa North, AWS Cape Town, or on-prem where needed. POPIA compliance is in the architecture from day one.",
+      },
+      {
+        question: "What happens if we want to take it in-house later?",
+        answer: "You can. We document the stack, hand over the repo, and train your engineers. No vendor lock-in.",
+      },
+    ],
+    relatedSlugs: ["ai-strategy-roadmap", "data-foundations", "ai-accelerated-growth"],
+    seo: {
+      title: "Custom AI Application Development South Africa | Impart Agency",
+      description:
+        "Custom AI applications — copilots, RAG systems, internal tools — built on your data, in your brand. POPIA-compliant. Production in 6–10 weeks. Impart Agency.",
+      keywords: [
+        "custom ai application south africa",
+        "rag system development",
+        "ai copilot development south africa",
+        "enterprise ai application",
+      ],
+    },
+  },
+
+  {
+    slug: "ai-strategy-roadmap",
+    title: "AI Strategy & Roadmap",
+    shortTitle: "AI Strategy",
+    tagline: "Two-week audit. Ranked opportunities. Real plan.",
+    description:
+      "Most AI strategy decks rot in a shared drive. Ours don't — because we're the ones who'll build what's in them. In two weeks, we audit your data and systems, shortlist AI opportunities by expected rand value, and hand you a roadmap we're ready to execute against.",
+    icon: "Map",
+    hero: {
+      headline: "AI Strategy & Roadmap",
+      subheadline:
+        "Most AI strategy decks rot in a shared drive. Ours don't — because we're the ones who'll build what's in them. In two weeks, we audit your data and systems, shortlist AI opportunities by expected rand value, and hand you a roadmap we're ready to execute against.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "A strategy deliverable is only as good as the team that can ship it. Our audit runs in two sprints: week one we map your data, systems, and processes; week two we score candidate opportunities on feasibility, impact, and time-to-value. You walk away with a ranked backlog, a 90-day plan, and — if you want it — a team ready to build.",
+    benefits: [
+      { title: "Two weeks start to finish", description: "Not six. Every day costs money. We scope to deliver a decision-ready output in ten working days." },
+      { title: "Executable by us on day one", description: "If you want it. The plan is built so we can pick it up the morning after handover." },
+      { title: "Rand-value scoring", description: "Every opportunity scored on feasibility, impact, and time-to-value. No 'AI potential' without a number." },
+      { title: "Data-readiness assessment", description: "We tell you where your data is ready for AI and where it isn't, before you commit to a build." },
+      { title: "Board-ready output", description: "A ranked opportunity backlog plus a practical 90-day plan your board and your CIO can act on." },
+      { title: "Fixed-fee engagement", description: "No meter running. One fee, two weeks, a complete deliverable." },
+    ],
+    process: [
+      { step: 1, title: "Kick-off", description: "Align on scope, access, and the outcome metric that will determine the plan's success." },
+      { step: 2, title: "Discover", description: "Interviews with process owners, audit of data assets, systems inventory." },
+      { step: 3, title: "Map", description: "Document the AI opportunity landscape inside your business." },
+      { step: 4, title: "Score", description: "Rank every opportunity by ROI, feasibility, data readiness, and regulatory risk." },
+      { step: 5, title: "Plan", description: "Build the 90-day implementation plan for the top-ranked opportunity." },
+      { step: 6, title: "Handover", description: "Board-ready report, ranked backlog, and an implementation-ready brief." },
+    ],
+    outcomes: [
+      "Ten working days from kickoff to roadmap delivery.",
+      "Output: a ranked opportunity backlog, a data-readiness report, and a 90-day implementation plan with effort, cost, and expected return per initiative.",
+    ],
+    faqs: [
+      {
+        question: "Do we have to use you to implement?",
+        answer: "No. The audit is a standalone deliverable. You're free to shop it around, give it to your internal team, or sit on it. We believe the plan is our best sales pitch — so we ship it that way.",
+      },
+      {
+        question: "What happens if our data isn't ready for AI?",
+        answer: "You'll get a data-readiness report that says so, with a plan to fix it. That's often the first engagement — foundations before applications.",
+      },
+      {
+        question: "Who's in the room from your side?",
+        answer: "A sponsor (CEO, CIO, or similar), a data lead, and two or three process owners. We keep the footprint small to move fast.",
+      },
+      {
+        question: "Is this the same as a 'digital transformation' engagement?",
+        answer: "No. Digital transformation is a 12-month consulting programme. This is a focused AI audit with an executable plan in ten working days.",
+      },
+      {
+        question: "Can you sign NDAs before we share anything?",
+        answer: "Yes. Mutual NDA signed before discovery begins.",
+      },
+    ],
+    relatedSlugs: ["custom-ai-applications", "data-foundations", "ai-accelerated-growth"],
+    seo: {
+      title: "AI Strategy & Roadmap South Africa | Impart Agency",
+      description:
+        "AI strategy audit in two weeks. Ranked opportunities, data-readiness report, and a 90-day implementation plan. Fixed-fee. Impart Agency, South Africa.",
+      keywords: [
+        "ai strategy south africa",
+        "ai roadmap south africa",
+        "ai opportunity audit",
+        "ai consulting south africa",
+      ],
+    },
+  },
+
+  {
+    slug: "data-foundations",
+    title: "Data Foundations for AI",
+    shortTitle: "Data",
+    tagline: "AI without clean data is a demo. We fix that first.",
+    description:
+      "Nine out of ten stuck AI projects are stuck because the data isn't ready. We diagnose where the gaps are — pipelines, warehousing, governance, labelling — and we fix them. Not as a standalone consulting project, but as the step that unblocks everything else you want to do with AI.",
+    icon: "Database",
+    hero: {
+      headline: "Data Foundations for AI",
+      subheadline:
+        "Nine out of ten stuck AI projects are stuck because the data isn't ready. We diagnose where the gaps are — pipelines, warehousing, governance, labelling — and we fix them. Not as a standalone consulting project, but as the step that unblocks everything else you want to do with AI.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "Before AI can do anything useful, your data has to be findable, consistent, governed, and fit for the job. We build the plumbing: ingestion pipelines, warehouses and lakes, feature stores, retrieval indexes, and the governance that makes the whole thing POPIA-compliant. Done once, done properly, so the next ten AI initiatives ship in weeks instead of stalling in discovery.",
+    benefits: [
+      { title: "Modern tooling", description: "Snowflake, BigQuery, Databricks, Supabase — the right tool for the job, not the most expensive one." },
+      { title: "POPIA-compliant by default", description: "Regional hosting options, data classification, access controls, and audit trails from day one." },
+      { title: "Governance baked in", description: "Data contracts, lineage, and access controls — so the next team that touches this knows what they're looking at." },
+      { title: "Built for AI workloads", description: "Not just dashboards. Vector stores, embedding pipelines, retrieval indexes — ready for the applications that follow." },
+      { title: "Incremental delivery", description: "Value in weeks, not a two-year programme. First use case in production, then ten more." },
+      { title: "Handover to your team", description: "When you're ready. We document everything and train your engineers to operate it." },
+    ],
+    process: [
+      { step: 1, title: "Audit", description: "Assess your current data assets, pipelines, quality, and governance posture." },
+      { step: 2, title: "Architect", description: "Design the data platform for your AI use cases, not a generic warehouse." },
+      { step: 3, title: "Pipeline", description: "Build ingestion, transformation, and delivery pipelines for your source systems." },
+      { step: 4, title: "Govern", description: "Implement data contracts, lineage, access controls, and POPIA audit trails." },
+      { step: 5, title: "Validate", description: "Test data quality, freshness, and retrieval accuracy against the target AI use case." },
+      { step: 6, title: "Operate", description: "Hand over to your team or retain us on an AI Ops retainer." },
+    ],
+    outcomes: [
+      "Typical engagement: 8–12 weeks to a production-ready data platform serving one AI use case.",
+      "With the plumbing in place to support ten more.",
+    ],
+    stack: ["Snowflake", "BigQuery", "Databricks", "Supabase", "dbt", "Apache Kafka", "Pinecone", "pgvector"],
+    faqs: [
+      {
+        question: "Do we need a full warehouse to do AI?",
+        answer: "Not always. For focused use cases, a lightweight vector store and a few clean tables are enough. We scope to the job, not the vendor pitch.",
+      },
+      {
+        question: "Can you work with our existing stack?",
+        answer: "Yes. We'd rather extend what you have than ship a greenfield project that requires a six-month migration.",
+      },
+      {
+        question: "How do you handle POPIA?",
+        answer: "Data classification, access controls, regional hosting, and audit trails from day one. Our data engineers work alongside your compliance team, not around them.",
+      },
+      {
+        question: "Do you build pipelines, or just consult on them?",
+        answer: "We build. Senior data engineers on every engagement. No offshoring.",
+      },
+      {
+        question: "What if our data is terrible?",
+        answer: "That's normal. The first deliverable is a data-quality report that names the problems. The second is the plan to fix them. We don't moralise about state — we ship improvements.",
+      },
+    ],
+    relatedSlugs: ["custom-ai-applications", "ai-strategy-roadmap", "ai-accelerated-growth"],
+    seo: {
+      title: "Data Foundations for AI South Africa | Impart Agency",
+      description:
+        "Build the data platform your AI needs. POPIA-compliant pipelines, warehouses, retrieval indexes, and governance. 8–12 weeks to production. Impart Agency.",
+      keywords: [
+        "data engineering south africa",
+        "ai data foundations",
+        "data pipeline south africa",
+        "popia data compliance south africa",
+      ],
+    },
+  },
+
+  {
+    slug: "ai-accelerated-growth",
+    title: "AI-Accelerated Growth",
+    shortTitle: "Growth",
+    tagline: "SEO, paid, content — run at machine speed, with human judgement.",
+    description:
+      "Your growth stack has been eating AI for eighteen months. We make it count. We run SEO, paid, and content programmes that use AI where it wins — research, first drafts, media buying, performance analysis — and senior operators where it doesn't. Same disciplines, 3–5× faster.",
+    icon: "TrendingUp",
+    hero: {
+      headline: "AI-Accelerated Growth",
+      subheadline:
+        "Your growth stack has been eating AI for eighteen months. We make it count. We run SEO, paid, and content programmes that use AI where it wins — research, first drafts, media buying, performance analysis — and senior operators where it doesn't. Same disciplines, 3–5× faster.",
+      cta: "Request a Proposal",
+    },
+    overview:
+      "AI-accelerated growth isn't \"AI marketing tools\" bolted onto a generalist agency. It's a restructured operating model where every stage of the growth workflow has a human making the call and AI doing the lift. Keyword research at 10× scale. Ad creative tested weekly instead of monthly. Content briefs generated from first-party data. Performance analysis that spots spend leakage in real time.",
+    benefits: [
+      { title: "Senior operators on every channel", description: "No junior-staffed accounts. No offshored delivery. The person running your Google Ads has done it at scale." },
+      { title: "AI-assisted at every stage", description: "Research, drafting, bidding, and analysis workflows rebuilt with AI doing the lift and operators making the call." },
+      { title: "Monthly reporting in plain English", description: "What moved, why, what's next. No dashboard dumps. No impressions metrics without a revenue ladder." },
+      { title: "Month-to-month retainer", description: "No 12-month lock-in. We earn the next month every month." },
+      { title: "Full transparency", description: "You see the accounts, the data, the spend. Nothing is locked inside our tools." },
+      { title: "Integrated with your CRM", description: "And your revenue data, not just channel dashboards. We optimise for pipeline, not clicks." },
+    ],
+    process: [
+      { step: 1, title: "Baseline", description: "Audit current performance, spend, and channel health. Establish the revenue-linked KPIs." },
+      { step: 2, title: "Plan", description: "Channel mix, content calendar, keyword map, and paid structure for month one." },
+      { step: 3, title: "Launch", description: "Go live with conservative spend and close daily monitoring in week one." },
+      { step: 4, title: "Measure", description: "Weekly performance review against the KPIs. No waiting until end of month." },
+      { step: 5, title: "Iterate", description: "Bid adjustments, creative swaps, content updates — continuous, not quarterly." },
+      { step: 6, title: "Scale", description: "Increase spend on winning channels. Cut what doesn't ladder to revenue." },
+    ],
+    outcomes: [
+      "Typical 90-day shape on a mid-market account: first-page coverage on 30–50 priority terms, paid CPA down 20–40%, content velocity up 3–5×.",
+      "We'll tell you what's realistic for your brand on the discovery call, not before.",
+    ],
+    faqs: [
+      {
+        question: "Isn't this just marketing with ChatGPT in the loop?",
+        answer: "No. It's a rebuilt workflow. Our operators use AI to do in an hour what used to take a day. That's structurally faster — and the savings show up in your retainer.",
+      },
+      {
+        question: "Do you replace my marketing team?",
+        answer: "No — we augment. Most of our clients have internal marketers. We run the channels they don't want to staff for, or we embed alongside them.",
+      },
+      {
+        question: "What platforms do you work across?",
+        answer: "Google Ads, Meta, LinkedIn, TikTok, YouTube, SEO (technical and content), programmatic. If a platform matters to your buyer, we cover it.",
+      },
+      {
+        question: "How do you measure success?",
+        answer: "Revenue-linked KPIs: pipeline, CAC, LTV. Not impressions, not reach. If a KPI doesn't ladder to revenue, we don't report on it.",
+      },
+      {
+        question: "What's the minimum spend?",
+        answer: "Depends on channel mix. Paid programmes typically start at R50,000 per month in media plus retainer. We'll be straight about it on the first call.",
+      },
+    ],
+    relatedSlugs: ["custom-ai-applications", "ai-strategy-roadmap", "data-foundations"],
+    seo: {
+      title: "AI-Accelerated Growth — SEO, Paid & Content | Impart Agency",
+      description:
+        "Growth programmes powered by AI workflows and senior operators. SEO, Google Ads, content at 3–5× the velocity of a traditional agency. Impart Agency, South Africa.",
+      keywords: [
+        "ai marketing south africa",
+        "ai seo south africa",
+        "ai accelerated growth agency",
+        "growth agency south africa",
+      ],
+    },
+  },
+
   {
     slug: "branding-graphic-design",
     title: "Branding & Graphic Design",

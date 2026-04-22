@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type BadgeVariant = "default" | "orange" | "subtle" | "outline";
+type BadgeVariant = "default" | "orange" | "subtle" | "outline" | "copper" | "prism";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
@@ -12,6 +12,8 @@ const variantClasses: Record<BadgeVariant, string> = {
   orange: "bg-brand-orange/10 text-brand-orange border border-brand-orange/20",
   subtle: "bg-white/5 text-brand-muted border border-white/10",
   outline: "bg-transparent text-brand-orange border border-brand-orange",
+  copper: "bg-brand-copper-muted text-brand-copper-light border border-brand-copper/30",
+  prism: "bg-brand-prism-muted text-brand-prism-light border border-brand-prism/30",
 };
 
 export function Badge({

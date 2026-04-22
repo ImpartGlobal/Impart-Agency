@@ -4,7 +4,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link";
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link" | "copper";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,14 +16,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-orange hover:bg-brand-orange-light text-white font-semibold shadow-glow-sm hover:shadow-glow-orange transition-all duration-200",
+    "bg-brand-orange hover:bg-brand-orange-light text-white font-semibold shadow-glow-sm hover:shadow-glow-orange active:translate-y-px active:shadow-none transition-all duration-200",
   secondary:
-    "bg-brand-surface hover:bg-brand-elevated text-white font-semibold border border-brand-border hover:border-brand-orange/40 transition-all duration-200",
+    "bg-brand-surface hover:bg-brand-elevated text-white font-semibold border border-brand-border hover:border-brand-orange/40 active:translate-y-px active:shadow-none transition-all duration-200",
   outline:
     "bg-transparent border border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white font-semibold transition-all duration-200",
   ghost:
     "bg-transparent hover:bg-brand-surface text-brand-muted hover:text-white font-medium transition-all duration-200",
   link: "bg-transparent text-brand-orange hover:text-brand-orange-light underline-offset-4 hover:underline font-medium p-0 h-auto transition-colors duration-200",
+  copper:
+    "bg-brand-copper hover:bg-brand-copper-light text-white font-semibold shadow-glow-sm hover:shadow-glow-copper active:translate-y-px active:shadow-none transition-all duration-200",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

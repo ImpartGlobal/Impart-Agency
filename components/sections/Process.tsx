@@ -1,47 +1,48 @@
+import Image from "next/image";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { Badge } from "@/components/ui/Badge";
 
 const steps = [
   {
     number: "01",
-    title: "Discover",
+    title: "Scope",
     description:
-      "We dig deep into your business, your market, and your goals. No assumptions — we understand the problem before we prescribe the solution.",
+      "Week one. We define the single function or cost line the engagement replaces. Specific and measurable, with a baseline number we work against.",
     color: "from-orange-500/20 to-orange-600/5",
   },
   {
     number: "02",
-    title: "Assess",
+    title: "Audit",
     description:
-      "We audit what you have — your current digital presence, competitors, technical gaps, and opportunities most agencies miss.",
+      "Weeks two and three. We run the operations audit against that function. Data readiness, current cost, integration surface, POPIA posture, build versus buy.",
     color: "from-amber-500/20 to-amber-600/5",
   },
   {
     number: "03",
-    title: "Eliminate",
+    title: "Design",
     description:
-      "We cut the dead weight. Broken pages, wasted ad spend, duplicate content, underperforming channels — we remove what's holding you back.",
+      "Week four. We specify the system. Model choice, data flow, integration points, handover rules, governance, audit logging. Signed before a line of code gets written.",
     color: "from-red-500/20 to-red-600/5",
   },
   {
     number: "04",
-    title: "Maximize",
+    title: "Build",
     description:
-      "We double down on what works. Every asset, every channel, every conversion point — optimised to extract maximum value.",
+      "Weeks five through nine. We build inside your environment. Daily progress, weekly reviews, no month-six pivots. KPIs tracked from day one.",
     color: "from-blue-500/20 to-blue-600/5",
   },
   {
     number: "05",
-    title: "Advise & Implement",
+    title: "Handover",
     description:
-      "We present a clear strategy, get your alignment, then execute. You understand every decision — and you approve it before we build.",
+      "Week ten. Your team takes the dashboards and the decisions. We document everything, train your operators, and stay on through the first thirty days of production.",
     color: "from-violet-500/20 to-violet-600/5",
   },
   {
     number: "06",
-    title: "Optimize",
+    title: "Run",
     description:
-      "We measure everything and improve continuously. Marketing is never done — it compounds. We treat your growth as an ongoing mission.",
+      "Month two onwards. Continuous improvement against the KPIs we locked at scope. Monthly retainer if you want us on, clean exit if you do not. Guarantee window closes at day ninety.",
     color: "from-emerald-500/20 to-emerald-600/5",
   },
 ];
@@ -49,21 +50,37 @@ const steps = [
 export function Process() {
   return (
     <section
-      className="py-24 lg:py-32 bg-brand-surface"
+      className="relative py-24 lg:py-32 bg-brand-surface overflow-hidden"
       aria-labelledby="process-heading"
     >
-      <div className="container-wide">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="orange" className="mb-4">How We Work</Badge>
+      {/* Horizon-waves-orange ambient — progression visual */}
+      <div className="absolute inset-0 -z-0" aria-hidden="true">
+        <Image
+          src="/graphics/backgrounds/bg-horizon-waves-orange.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-20"
+          style={{ mixBlendMode: "lighten" }}
+        />
+      </div>
+
+      <div className="container-wide relative z-10">
+        <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
+          <Badge variant="orange" className="mb-4">How We Engage</Badge>
           <h2
             id="process-heading"
             className="font-display text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Our Six-Step{" "}
-            <span className="gradient-text">Growth Process</span>
+            From function to system{" "}
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
+              in under ninety days
+            </span>
           </h2>
-          <p className="text-brand-muted text-lg max-w-2xl mx-auto">
-            Every engagement follows our proven framework — built to uncover opportunity, eliminate waste, and compound results month after month.
+          <p className="text-brand-muted text-lg">
+            Every engagement is fixed-scope and time-boxed against the cost line
+            it replaces. Ten weeks from scope to handover, thirty days of managed
+            production, ninety-day guarantee on the outcome.
           </p>
         </AnimatedSection>
 
@@ -71,15 +88,15 @@ export function Process() {
           {steps.map((step, index) => (
             <StaggerItem key={step.number}>
               <div className="relative p-6 rounded-2xl bg-brand-elevated border border-brand-border h-full overflow-hidden group hover:border-brand-orange/30 transition-all duration-300">
-                {/* Background gradient */}
+                {/* Background gradient on hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   aria-hidden="true"
                 />
 
-                {/* Step number */}
+                {/* Step number — text-brand-elevated reads as subtle embossing */}
                 <div className="relative">
-                  <span className="font-display text-5xl font-bold text-brand-border select-none">
+                  <span className="font-display text-5xl font-bold text-brand-elevated select-none">
                     {step.number}
                   </span>
                 </div>
@@ -94,10 +111,14 @@ export function Process() {
                   </p>
                 </div>
 
-                {/* Connector line for grid flow */}
+                {/* Connector line — warm gradient hints at flow */}
                 {index < steps.length - 1 && (
                   <div
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-5 h-px bg-brand-border hidden lg:block"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-5 h-px hidden lg:block"
+                    style={{
+                      background:
+                        "linear-gradient(to right, #27273A, #33251F)",
+                    }}
                     aria-hidden="true"
                   />
                 )}

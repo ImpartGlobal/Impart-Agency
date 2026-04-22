@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, RefreshCw, Shield, Headphones } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
@@ -9,58 +10,77 @@ import { site } from "@/content/site";
 const supportFeatures = [
   {
     icon: Headphones,
-    title: "Dedicated Account Manager",
+    title: "Named Engagement Lead",
     description:
-      "One person who knows your business, your goals, and your history. No bouncing between departments.",
+      "One senior practitioner who owns your system end to end. They took it through scope, they took it through build, they stay through operations.",
   },
   {
     icon: RefreshCw,
-    title: "Ongoing Optimisation",
+    title: "Continuous Tuning",
     description:
-      "We don't launch and leave. Monthly reviews, continuous improvements, and proactive recommendations.",
+      "Models drift, data moves, volumes spike. We retune prompts, update retrieval sets, and adjust routing rules against your live KPIs every month.",
   },
   {
     icon: Shield,
-    title: "Security & Maintenance",
+    title: "Governance and Audit",
     description:
-      "Regular updates, backups, uptime monitoring, and security patching — so you never wake up to a broken site.",
+      "Security patching, access controls, audit log review, and POPIA compliance posture checks. Reported monthly in plain language, formal annually.",
   },
   {
     icon: MessageCircle,
-    title: "WhatsApp-First Communication",
+    title: "Direct Line to the Team",
     description:
-      "South Africa runs on WhatsApp. So do we. Fast responses, clear updates, no tickets and no waiting.",
+      "WhatsApp and email to the engagement lead, not a ticket queue. Response measured in hours during business days, not business weeks.",
   },
 ];
 
 export function Support() {
   const whatsappUrl = formatWhatsAppUrl(
     site.whatsapp,
-    "Hi, I'd like to discuss ongoing support."
+    "Hi, I'd like to discuss ongoing AI operations support."
   );
 
   return (
     <section
-      className="py-24 lg:py-32 bg-brand-surface"
+      className="relative py-28 lg:py-36 bg-brand-surface overflow-hidden"
       aria-labelledby="support-heading"
     >
-      <div className="container-wide">
+      {/* Horizon-waves-copper ambient — warm, different temp to Process */}
+      <div className="absolute inset-0 -z-0" aria-hidden="true">
+        <Image
+          src="/graphics/backgrounds/bg-horizon-waves-copper.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          style={{ opacity: 0.18, mixBlendMode: "lighten" }}
+        />
+      </div>
+
+      <div className="container-wide relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Content */}
           <AnimatedSection>
-            <Badge variant="orange" className="mb-4">Ongoing Support</Badge>
+            <Badge variant="orange" className="mb-4">AI Operations</Badge>
             <h2
               id="support-heading"
               className="font-display text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
             >
-              We&apos;re There{" "}
-              <span className="gradient-text">Long After Launch</span>
+              We stay on the system{" "}
+              <span className="bg-gradient-brand bg-clip-text text-transparent">
+                after it goes live
+              </span>
             </h2>
             <p className="text-brand-muted text-lg leading-relaxed mb-6">
-              Most agencies disappear once the invoice is paid. We believe the most valuable work happens after launch — the iteration, the optimisation, the gradual compounding of everything we build together.
+              A production AI system is a living thing. The model behaviour
+              shifts, the data it runs on evolves, the volume changes. The work
+              that matters most happens in the months after handover, tuning the
+              system against real outcomes.
             </p>
             <p className="text-brand-muted leading-relaxed mb-8">
-              Our ongoing retainer clients see the best results. Because digital growth isn&apos;t a project — it&apos;s a practice.
+              Our retainer clients see the strongest returns because the system
+              compounds. Monthly engagement, no minimum term, clean exit whenever
+              the value stops matching the fee.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button asChild>

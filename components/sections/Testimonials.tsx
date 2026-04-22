@@ -1,7 +1,15 @@
+import Image from "next/image";
 import { Quote } from "lucide-react";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { Badge } from "@/components/ui/Badge";
 import { testimonials } from "@/content/testimonials";
+
+// Brand palette rotation — copper / prism / orange-deep, cycling by index
+const avatarColors = [
+  "var(--brand-copper)",
+  "var(--brand-prism)",
+  "var(--brand-orange-deep)",
+];
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -21,23 +29,40 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export function Testimonials() {
+  if (!testimonials || testimonials.length === 0) return null;
+
   return (
     <section
-      className="py-24 lg:py-32 bg-brand-surface"
+      className="relative py-24 lg:py-32 bg-brand-surface overflow-hidden"
       aria-labelledby="testimonials-heading"
     >
-      <div className="container-wide">
+      {/* Glass-prism ambient — cold surface pairs with quote/clarity theme */}
+      <div className="absolute inset-0 -z-0" aria-hidden="true">
+        <Image
+          src="/graphics/backgrounds/bg-glass-prism-clean.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+          style={{ mixBlendMode: "screen" }}
+        />
+      </div>
+
+      <div className="container-wide relative z-10">
         <AnimatedSection className="text-center mb-16">
           <Badge variant="orange" className="mb-4">Client Results</Badge>
           <h2
             id="testimonials-heading"
             className="font-display text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            What Our Clients{" "}
-            <span className="gradient-text">Actually Say</span>
+            The work, in{" "}
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
+              their words
+            </span>
           </h2>
           <p className="text-brand-muted text-lg max-w-2xl mx-auto">
-            We let outcomes do the talking. Here&apos;s what South African business owners say after working with us.
+            Operators and enterprise leaders on what it looks like when the
+            system starts earning its keep.
           </p>
         </AnimatedSection>
 
@@ -47,8 +72,9 @@ export function Testimonials() {
               <figure className="flex flex-col h-full p-6 rounded-2xl bg-brand-elevated border border-brand-border hover:border-brand-orange/20 transition-all duration-300">
                 <div className="flex items-start justify-between mb-4">
                   <StarRating rating={testimonial.rating} />
+                  {/* Quote icon — prism accent, cold surface per brand-guide §7 */}
                   <Quote
-                    className="h-6 w-6 text-brand-orange/30 shrink-0"
+                    className="h-6 w-6 text-brand-prism/40 shrink-0"
                     aria-hidden="true"
                   />
                 </div>
@@ -57,11 +83,10 @@ export function Testimonials() {
                 </blockquote>
                 <figcaption className="border-t border-brand-border pt-4">
                   <div className="flex items-center gap-3">
+                    {/* Avatar — brand palette rotation, no unpredictable HSL */}
                     <div
                       className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
-                      style={{
-                        background: `hsl(${(index * 67 + 20) % 360}, 55%, 40%)`,
-                      }}
+                      style={{ background: avatarColors[index % avatarColors.length] }}
                       aria-hidden="true"
                     >
                       {testimonial.author
@@ -74,7 +99,7 @@ export function Testimonials() {
                         {testimonial.author}
                       </div>
                       <div className="text-xs text-brand-subtle">
-                        {testimonial.role} — {testimonial.company}
+                        {testimonial.role}, {testimonial.company}
                       </div>
                     </div>
                   </div>
